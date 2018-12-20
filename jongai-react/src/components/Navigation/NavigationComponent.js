@@ -22,7 +22,7 @@ var NavigationComponent = (props) => {
                                 <Link to={`/products/${1}`}></Link>
                             </li>
                         </ul>
-                        <form className="form-inline">
+                        {/* <form className="form-inline">
                             <input type="text" className="form-control mr-sm-2" onChange={props.handleChangeOnName}
                                 value={props.userName} name="currentUser" placeholder="User"></input>
                         </form>
@@ -33,7 +33,7 @@ var NavigationComponent = (props) => {
                                     return <Link className="btn btn-success" to={linkas} >Shopping cart</Link>
                                 }
                             }
-                        </UserContext.Consumer>
+                        </UserContext.Consumer> */}
                     </div>
                 </nav>
             </div>

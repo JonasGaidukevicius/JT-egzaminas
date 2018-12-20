@@ -83,6 +83,18 @@ class EditHolidayContainer extends React.Component {
 
   }
 
+  handleDelete = (event) => {
+    event.preventDefault();
+    console.log("Noriu ištrinti " + this.state.oldTitle);
+    axios.delete('http://localhost:8080/holidays/' + (this.state.oldTitle))
+    .then((response) => {
+        console.log("Ištrinta");
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+  }
+
   render() {
     this.fromMenu = "Atnaujinama Šventė:";
 
@@ -93,6 +105,7 @@ class EditHolidayContainer extends React.Component {
         handleChangeOfType={this.handleChangeOfType}
         handleChangeOfFlag={this.handleChangeOfFlag}
         handleSubmit={this.handleSubmit}
+        handleDelete={this.handleDelete}
         fromMenu={this.fromMenu}
         currentTitle={this.state.title}
         currentImage={this.state.image}

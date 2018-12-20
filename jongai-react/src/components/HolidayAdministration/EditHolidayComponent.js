@@ -37,6 +37,7 @@ const EditProductComponet = (props) => {
                 </div>
             </div>
             <button className="btn btn-primary" type="submit" onClick={props.handleSubmit}>Save</button>
+            <button className="btn btn-primary" onClick={props.handleDelete}>Delete</button>
         </form>
     );
 }

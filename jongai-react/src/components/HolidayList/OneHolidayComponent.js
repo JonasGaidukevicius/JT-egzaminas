@@ -6,7 +6,7 @@ import UserContext from '../../UserContext';
 // Stilius importuoju iš css failo
 import './styles.css';
 
-const OneProductComponent = (props) => {
+const OneHolidayComponent = (props) => {
     return (
         <div className="container">
             <div className="row">
@@ -16,8 +16,8 @@ const OneProductComponent = (props) => {
                 <div className="col-3">
                     <h5>{props.title}</h5>
                     <p>{props.description}</p>
-                    <p>Price: {props.price} Eur.</p>
-                    <p>Quantity in stock: {props.quantity} pcs.</p>
+                    <p>{props.type}</p>
+                    <p>flag: {props.flag} pcs.</p>
                 </div>
             </div>
         </div>
@@ -35,4 +35,4 @@ OneProductComponent.propTypes = {
 };*/
 
 
-export default OneProductComponent;
+export default OneHolidayComponent;

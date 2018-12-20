@@ -1,22 +1,22 @@
 import React from 'react';
 import {Component} from 'react';
 import PropTypes from 'prop-types';
-import OneProductComponent from './OneProductComponent';
+import OneHolidayComponent from './OneHolidayComponent';
 import axios from 'axios';
 import UserContext from '../../UserContext';
 import AddToCartComponent from './AddTopCartComponent';
 
-class OneProductContainer extends React.Component {
+class OneHolidayContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            id: 0,
-            quantity: 0,
-            quantityInStock: 0,
             title: "",
+            description: '',
+            type: '',
+            
             //image: "",
             //description: "",
-            price: 0,
+            flag: false
             
         };
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! užkomentavau, nes man atrodo, kad čia aš eksperimentavau
@@ -44,17 +44,17 @@ class OneProductContainer extends React.Component {
 
 
     componentDidMount() {
-        const position = this.props.match.params.id;
-        axios.get('http://localhost:8080/products/' + (position))
+        const position = this.props.match.params.title;
+        axios.get('http://localhost:8080/holidays/' + (position))
             .then((response) => {
                 //this.setState(response.data);
                 console.log("-----------------Response data id yra: " + response.data.id);
                 console.log("-----------------Response data title yra: " + response.data.title);
-                this.setState({id: response.data.id,
-                                title: response.data.title,
-                                price: response.data.price,
-                                quantity: response.data.quantity,
-                                quantityInStock: response.data.quantity})
+                this.setState({ title: response.data.title,
+                                description: response.data.description,
+                                type: response.data.type,
+                                flag: response.data.flag
+                })
                 
             })
             .catch((error) => {
@@ -65,26 +65,26 @@ class OneProductContainer extends React.Component {
     render() {
         return (
             <div>
-                <OneProductComponent title={this.state.title}
+                <OneHolidayComponent title={this.state.title}
                                     description={this.state.description}
-                                    price={this.state.price}
+                                    type={this.state.type}
                                     //dabar taip
-                                    quantity={this.state.quantityInStock}
+                                    flag={this.state.flag}
                                     //buvo taip
                                     //------quantity={this.state.quantity}
                                     //handleAddToCart={this.handleAddToCart}
                                     //handleChangeOfQuantity={this.handleChangeOfQuantity}
                   />
-                <UserContext.Consumer>
+                {/* <UserContext.Consumer>
                 {
                     (userNameObject) => {
                        return <AddToCartComponent userName={userNameObject.user} handleAddToCart={this.handleAddToCart} handleChangeOfQuantity={this.handleChangeOfQuantity}/>
                     }
                 } 
-                </UserContext.Consumer> 
+                </UserContext.Consumer>  */}
             </div>
         );
     }
 }
 
-export default OneProductContainer;
+export default OneHolidayContainer;

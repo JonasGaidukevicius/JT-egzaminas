@@ -14,7 +14,7 @@ import NewHolidayContainer from './components/HolidayAdministration/NewHolidayCo
 import UserContext from './UserContext';
 import HolidayAdministrationListContainer from './components/HolidayAdministration/HolidayAdministrationListContainer';
 import EditHolidayContainer from './components/HolidayAdministration/EditHolidayContainer';
-import OneProductContainer from './components/HolidayList/OneProductContainer';
+import OneHolidayContainer from './components/HolidayList/OneHolidayContainer';
 import ShoppingCartContainer from './components/ShoppingCart/ShoppingCartContainer';
 import '../node_modules/jquery/dist/jquery';
 import '../node_modules/popper.js/dist/popper';
@@ -39,12 +39,12 @@ ReactDOM.render((
             <NavigationContainer>
                 <Switch>
                     <Route exact path='/' component={HolidayListContainer} />
-                    <Route exact path="/holidays/:title" component={OneProductContainer} />
+                    <Route exact path="/holidays/:title" component={OneHolidayContainer} />
                     <Route exact path='/admin' component={HolidayAdministrationListContainer} />
-                    <Route exact path='/pasimokyti' component={Pasimokyti} />          
+                    {/* <Route exact path='/pasimokyti' component={Pasimokyti} />           */}
                     <Route exact path="/admin/holidays/new" component={NewHolidayContainer} />       
                     <Route exact path="/admin/holidays/:title" component={EditHolidayContainer} />   
-                    <Route exact path="/shopping-Cart/:user" component={ShoppingCartContainer} />                               
+                    {/* <Route exact path="/shopping-Cart/:user" component={ShoppingCartContainer} />                                */}
                     <Route path="*" component={NoMatch} />
                     <Route component={NoMatch} />
                 </Switch>
