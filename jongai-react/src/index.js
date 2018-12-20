@@ -9,12 +9,12 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import NoMatch from './components/Navigation/NoMatch';
 import NavigationComponent from './components/Navigation/NavigationComponent';
 import NavigationContainer from './components/Navigation/NavigationContainer';
-import ProductListContainer from './components/ProductList/ProductListContainer';
-import NewProductContainer from './components/ProductAdministration/NewProductContainer';
+import HolidayListContainer from './components/HolidayList/HolidayListContainer';
+import NewHolidayContainer from './components/HolidayAdministration/NewHolidayContainer';
 import UserContext from './UserContext';
-import ProductAdministrationListContainer from './components/ProductAdministration/ProductAdministrationListContainer';
-import EditProductContainer from './components/ProductAdministration/EditProductContainer';
-import OneProductContainer from './components/ProductList/OneProductContainer';
+import HolidayAdministrationListContainer from './components/HolidayAdministration/HolidayAdministrationListContainer';
+import EditHolidayContainer from './components/HolidayAdministration/EditHolidayContainer';
+import OneProductContainer from './components/HolidayList/OneProductContainer';
 import ShoppingCartContainer from './components/ShoppingCart/ShoppingCartContainer';
 import '../node_modules/jquery/dist/jquery';
 import '../node_modules/popper.js/dist/popper';
@@ -38,12 +38,12 @@ ReactDOM.render((
         <UserContext.Provider value={{user: "Jonas"}}>
             <NavigationContainer>
                 <Switch>
-                    <Route exact path='/' component={ProductListContainer} />
-                    <Route exact path="/products/:id" component={OneProductContainer} />
-                    <Route exact path='/admin' component={ProductAdministrationListContainer} />
+                    <Route exact path='/' component={HolidayListContainer} />
+                    <Route exact path="/holidays/:title" component={OneProductContainer} />
+                    <Route exact path='/admin' component={HolidayAdministrationListContainer} />
                     <Route exact path='/pasimokyti' component={Pasimokyti} />          
-                    <Route exact path="/admin/products/new" component={NewProductContainer} />       
-                    <Route exact path="/admin/products/:id" component={EditProductContainer} />   
+                    <Route exact path="/admin/holidays/new" component={NewHolidayContainer} />       
+                    <Route exact path="/admin/holidays/:title" component={EditHolidayContainer} />   
                     <Route exact path="/shopping-Cart/:user" component={ShoppingCartContainer} />                               
                     <Route path="*" component={NoMatch} />
                     <Route component={NoMatch} />

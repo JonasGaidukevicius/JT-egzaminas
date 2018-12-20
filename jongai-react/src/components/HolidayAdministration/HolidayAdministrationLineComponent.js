@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import pic from '../ProductList/img/KingWear-KW06.jpg';
+import pic from '../HolidayList/img/KingWear-KW06.jpg';
 import { withRouter } from 'react-router';
 
 //ar reikia jo? Ar pades jis? 
 import { Link } from 'react-router-dom';
 
-const ProductAdministrationLineComponent = (props) => {
+const HolidayAdministrationLineComponent = (props) => {
     
-    var linkas = "/admin/products/" + props.id;
+    var linkas = "/admin/holidays/" + props.title;
     return (
         <div className="container">
             <div className="row">
                 <div className="col-2">
-                    <p>{props.id}</p>
+                <Link to={linkas}>{props.title}</Link> 
+                    
                 </div>
                 <div className="col-2">
                     <img src={pic} alt="Smartphone" width="50px"></img>
@@ -22,7 +23,9 @@ const ProductAdministrationLineComponent = (props) => {
                     {/* senas budas
                     <a href={linkas}>{props.title}</a>
                     */}
-                    <Link to={linkas}>{props.title}</Link> 
+                    <p>{props.description}</p>
+                    
+                    
                 </div>
             </div>
         </div>
@@ -58,4 +61,4 @@ ProductCardComponent.propTypes = {
 };
 */}
 
-export default withRouter(ProductAdministrationLineComponent);
+export default withRouter(HolidayAdministrationLineComponent);

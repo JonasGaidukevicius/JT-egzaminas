@@ -1,19 +1,19 @@
 import React from 'react';
-import NewProductComponent from './NewProductComponent';
+import NewHolidayComponent from './NewHolidayComponent';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
 
-class NewProductContainer extends React.Component {
+class NewHolidayContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: '',
       description: '',
-      //id: '',
       image: '',
-      price: 0,
-      quantity: 0,
-      title: ''
+      type: '',
+      flag: false,
+     
     };
     //var fromMenu;
   }
@@ -22,7 +22,7 @@ class NewProductContainer extends React.Component {
     this.setState({ title: event.target.value });
   }
 
-  handleChangeOfImageUrl = (event) => {
+  handleChangeOfImage = (event) => {
     this.setState({ image: event.target.value });
   }
 
@@ -30,18 +30,18 @@ class NewProductContainer extends React.Component {
     this.setState({ description: event.target.value });
   }
 
-  handleChangeOfPrice = (event) => {
-    this.setState({ price: event.target.value });
+  handleChangeOfType = (event) => {
+    this.setState({ type: event.target.value });
   }
 
-  handleChangeOfQuantity = (event) => {
-    this.setState({ quantity: event.target.value });
+  handleChangeOfFlag = (event) => {
+    this.setState({ flag: event.target.value });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    axios.post('http://localhost:8080/products', this.state)
+    axios.post('http://localhost:8080/holidays', this.state)
       .then(function (response) {
         console.log(response);
       })
@@ -58,14 +58,14 @@ class NewProductContainer extends React.Component {
 
   render() {
     
-    this.fromMenu = "Enter new product data:"
+    this.fromMenu = "Enter new holiday data:"
 
     return (
-      <NewProductComponent handleChangeOfTitle={this.handleChangeOfTitle}
-        handleChangeOfImageUrl={this.handleChangeOfImageUrl}
+      <NewHolidayComponent handleChangeOfTitle={this.handleChangeOfTitle}
+        handleChangeOfImage={this.handleChangeOfImage}
         handleChangeOfDescription={this.handleChangeOfDescription}
-        handleChangeOfPrice={this.handleChangeOfPrice}
-        handleChangeOfQuantity={this.handleChangeOfQuantity}
+        handleChangeOfType={this.handleChangeOfType}
+        handleChangeOfFlag={this.handleChangeOfFlag}
         handleSubmit={this.handleSubmit}
         fromMenu={this.fromMenu}
       />
@@ -73,4 +73,4 @@ class NewProductContainer extends React.Component {
   }
 }
 
-export default withRouter(NewProductContainer);
+export default withRouter(NewHolidayContainer);

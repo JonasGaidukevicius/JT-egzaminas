@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProductAdministrationLineComponent from './ProductAdministrationLineComponent';
+import HolidayAdministrationLineComponent from './HolidayAdministrationLineComponent';
 //import MyProvider from '../App';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-class ProductAdministrationListContainer extends React.Component {
+class HolidayAdministrationListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: '',
-            loading: 'Loading products. Please wait...'
+            holidays: '',
+            loading: 'Loading holidays. Please wait...'
         };
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/products')
+        axios.get('http://localhost:8080/holidays')
             .then((response) => {
-                this.setState({ products: response.data });
+                this.setState({ holidays: response.data });
                 //console.log(response.data);
-                //console.log("Produktai yra - " + this.state.products);
+                //console.log("Produktai yra - " + this.state.holidays);
             })
             .catch((error) => {
                 console.log(error);
@@ -27,30 +27,30 @@ class ProductAdministrationListContainer extends React.Component {
     }
 
     render() {
-        if (this.state.products) {
-            const productCards = this.state.products.map((product, index) => {
+        if (this.state.holidays) {
+            const productCards = this.state.holidays.map((product, index) => {
                 return (
-                    <ProductAdministrationLineComponent
+                    <HolidayAdministrationLineComponent
                         key={index}
-                        id={product.id}
-                        image={product.image}
                         title={product.title}
+                        image={product.image}
+                        description={product.description}
                     />
                 );
             });
             return (<div className="container">
                          <div className="row">
-                         <Link className="btn btn-success" to="/admin/products/new">Add new product</Link>
+                         <Link className="btn btn-success" to="/admin/holidays/new">Add new holiday</Link>
                          </div>
                          <div className="row">
                             <div className="col-2">
-                                <p>Product #</p>
+                                <p>Holiday</p>
                             </div>
                             <div className="col-2">
-                                <p>Product picture</p>
+                                <p>Picture</p>
                             </div>
                             <div className="col-8">
-                                <p>Product title</p>
+                                <p>Description</p>
                             </div>
                         </div>
                         <div className="row">{productCards}
@@ -61,4 +61,4 @@ class ProductAdministrationListContainer extends React.Component {
     }
 }
 
-export default ProductAdministrationListContainer;
+export default HolidayAdministrationListContainer;

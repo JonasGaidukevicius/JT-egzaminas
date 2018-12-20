@@ -9,28 +9,28 @@ var styles = {
     };
 
 const ProductCardComponent = (props) => {
-    var linkas = "/products/" + props.id;
+    var linkas = "/products/" + props.title;
     return (
         <div className="card" style={{ width: "18rem" }}>
             <img className="card-img-top" src={pic} alt="Smartwatch"></img>
             <div className="card-body">
                 <h5 style={styles.tekstoFonas} className="card-title">{props.title}</h5>
                 <p className="card-text">{props.description}</p>
-                <p style={styles.tekstoSpalva} className="card-text">Price: {props.price} Euro</p>
-                <p className="card-text">Quantity: {props.quantity} pcs.</p>
-                <Link className="btn btn-primary" to={linkas}>Product details</Link>
+                <p style={styles.tekstoSpalva} className="card-text">Type: {props.type}</p>
+                <p className="card-text">Rise flag: {props.flag}</p>
+                <Link className="btn btn-primary" to={linkas}>Holiday details</Link>
             </div>
         </div>
         );
 }
 
 ProductCardComponent.propTypes = {
-    id:PropTypes.number.isRequired,
+    //id:PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    quantity: PropTypes.number.isRequired
+    type: PropTypes.number.isRequired,
+    flag: PropTypes.bool.isRequired
 };
 
 export default ProductCardComponent;

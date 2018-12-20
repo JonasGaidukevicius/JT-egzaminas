@@ -12,12 +12,12 @@ const EditProductComponet = (props) => {
             </div>
             <div className="form-row">
                 <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault01">Product title</label>
+                    <label htmlFor="validationDefault01">Holiday title</label>
                     <input type="text" className="form-control" id="validationDefault01" placeholder="" value={props.currentTitle} required onChange={props.handleChangeOfTitle}></input>
                 </div>
                 <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault02">Image URL</label>
-                    <input type="text" className="form-control" id="validationDefault02" placeholder="" value={props.currentImage} required onChange={props.handleChangeOfImageUrl}></input>
+                    <label htmlFor="validationDefault02">Image</label>
+                    <input type="text" className="form-control" id="validationDefault02" placeholder="" value={props.currentImage} required onChange={props.handleChangeOfImage}></input>
                 </div>
             </div>
             <div className="form-row">
@@ -28,12 +28,12 @@ const EditProductComponet = (props) => {
             </div>
             <div className="form-row">
                 <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault04">Price</label>
-                    <input type="text" className="form-control" id="validationDefault04" placeholder="" value={props.currentPrice} required onChange={props.handleChangeOfPrice}></input>
+                    <label htmlFor="validationDefault04">Type</label>
+                    <input type="text" className="form-control" id="validationDefault04" placeholder="" value={props.currentType} required onChange={props.handleChangeOfType}></input>
                 </div>
                 <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault05">Quantity</label>
-                    <input type="text" className="form-control" id="validationDefault05" placeholder="" value={props.currentQuantity} required onChange={props.handleChangeOfQuantity}></input>
+                    <label htmlFor="validationDefault05">Flag</label>
+                    <input type="text" className="form-control" id="validationDefault05" placeholder="" value={props.currentFlag} required onChange={props.handleChangeOfFlag}></input>
                 </div>
             </div>
             <button className="btn btn-primary" type="submit" onClick={props.handleSubmit}>Save</button>
