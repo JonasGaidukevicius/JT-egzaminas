@@ -1,27 +1,22 @@
 import React from 'react';
-import {Component} from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import OneHolidayComponent from './OneHolidayComponent';
 import axios from 'axios';
-import UserContext from '../../UserContext';
-import AddToCartComponent from './AddTopCartComponent';
+//import UserContext from '../../UserContext';
+//import AddToCartComponent from './AddTopCartComponent';
 
 class OneHolidayContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
             title: "",
+            image: "",
             description: '',
             type: '',
-            
-            //image: "",
-            //description: "",
             flag: false
-            
         };
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! užkomentavau, nes man atrodo, kad čia aš eksperimentavau
-        //this.userName = this.context;
-        
+        //this.userName = this.context;  
     }
     
      handleAddToCart = (userName) => {      
@@ -51,11 +46,11 @@ class OneHolidayContainer extends React.Component {
                 console.log("-----------------Response data id yra: " + response.data.id);
                 console.log("-----------------Response data title yra: " + response.data.title);
                 this.setState({ title: response.data.title,
+                                image: response.data.image,
                                 description: response.data.description,
                                 type: response.data.type,
                                 flag: response.data.flag
-                })
-                
+                })   
             })
             .catch((error) => {
                 console.log(error);
@@ -65,15 +60,12 @@ class OneHolidayContainer extends React.Component {
     render() {
         return (
             <div>
-                <OneHolidayComponent title={this.state.title}
-                                    description={this.state.description}
-                                    type={this.state.type}
-                                    //dabar taip
-                                    flag={this.state.flag}
-                                    //buvo taip
-                                    //------quantity={this.state.quantity}
-                                    //handleAddToCart={this.handleAddToCart}
-                                    //handleChangeOfQuantity={this.handleChangeOfQuantity}
+                <OneHolidayComponent
+                    title={this.state.title}
+                    image={this.state.image}
+                    description={this.state.description}
+                    type={this.state.type}
+                    flag={this.state.flag === true ? "Yes" : "No"}
                   />
                 {/* <UserContext.Consumer>
                 {

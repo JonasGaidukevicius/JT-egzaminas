@@ -21,7 +21,7 @@ public class HolidayService {
 	public List<HolidayData> getFullListOfHolidays() {
 		return holidayRepository.findAll().stream().map((holiday) ->
 		new HolidayData(holiday.getTitle(),
-							holiday.getDescription(),
+						holiday.getDescription(),
 						holiday.getImage(),
 						holiday.getType(),
 						holiday.isFlag()
