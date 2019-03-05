@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+//import './index.css';
 //import App from './App';
 //import * as serviceWorker from './serviceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Redirect, Route } from 'react-router';
 import { BrowserRouter, Link } from 'react-router-dom';
 import NoMatch from './components/Navigation/NoMatch';
-import NavigationComponent from './components/Navigation/NavigationComponent';
+//import NavigationComponent from './components/Navigation/NavigationComponent';
 import NavigationContainer from './components/Navigation/NavigationContainer';
 import HolidayListContainer from './components/HolidayList/HolidayListContainer';
 import NewHolidayContainer from './components/HolidayAdministration/NewHolidayContainer';
@@ -15,9 +15,9 @@ import UserContext from './UserContext';
 import HolidayAdministrationListContainer from './components/HolidayAdministration/HolidayAdministrationListContainer';
 import EditHolidayContainer from './components/HolidayAdministration/EditHolidayContainer';
 import OneHolidayContainer from './components/HolidayList/OneHolidayContainer';
-import ShoppingCartContainer from './components/ShoppingCart/ShoppingCartContainer';
-import '../node_modules/jquery/dist/jquery';
-import '../node_modules/popper.js/dist/popper';
+//import ShoppingCartContainer from './components/ShoppingCart/ShoppingCartContainer';
+//import '../node_modules/jquery/dist/jquery';
+//import '../node_modules/popper.js/dist/popper';
 import Pasimokyti from './Pasimokyti';
 
 var DemonstruotiNavigacija = (props) => {

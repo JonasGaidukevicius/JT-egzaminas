@@ -11,8 +11,8 @@ import {Link} from 'react-router-dom';
 const HolidayCardComponent = (props) => {
     var linkas = "/holidays/" + props.title;
     return (
-        <div className="card" style={{ width: "18rem" }}>
-            <img className="card-img-top" src={pic} alt="Smartwatch"></img>
+        <div className="card p-3 m-1" style={{ width: "18rem" }}>
+            <img className="card-img-top" src={pic} alt="Holiday_picture"></img>
             <div className="card-body">
                 <h5 className="card-title">{props.title}</h5>
                 <p className="card-text">{props.description}</p>
@@ -29,8 +29,8 @@ HolidayCardComponent.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    type: PropTypes.number.isRequired,
-    flag: PropTypes.bool.isRequired
+    type: PropTypes.string.isRequired,
+    flag: PropTypes.string.isRequired
 };
 
 export default HolidayCardComponent;

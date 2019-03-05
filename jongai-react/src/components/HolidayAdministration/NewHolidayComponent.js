@@ -1,47 +1,66 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+//import PropTypes from 'prop-types';
 
-const NewProductComponet = (props) => {
+const NewHolidayComponet = (props) => {
 
     return (
-        <form >
-            <div className="form-row">
-                <div className="col-md-12 mb-12">
-                    <p>{props.fromMenu}</p>
+        <div className="container">
+            <form onSubmit={props.handleSubmit}>
+                <div className="form-row">
+                    <div className="col-md-12 col-lg-10 mb-3">
+                        <p>{props.fromMenu}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="form-row">
-                <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault01">Holiday title</label>
-                    <input type="text" className="form-control" id="validationDefault01" placeholder="Holiday title" value={props.title} required onChange={props.handleChangeOfTitle}></input>
+                <div className="form-row">
+                    <div className="col-md-4 col-lg-4 mb-3">
+                        <label htmlFor="title">Holiday title:&nbsp;</label>
+                        <input type="text" className="form-control" id="title" placeholder="Holiday title" value={props.title} required onChange={props.handleChangeOfTitle}></input>
+                    </div>
+                    <div className="col-md-4 col-lg-4 mb-3">
+                        <label htmlFor="image">Image:&nbsp;</label>
+                        <input type="text" className="form-control" id="image" placeholder="Image" value={props.image} required onChange={props.handleChangeOfImage}></input>
+                    </div>
                 </div>
-                <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault02">Image</label>
-                    <input type="text" className="form-control" id="validationDefault02" placeholder="Image" value={props.image}required onChange={props.handleChangeOfImage}></input>
+                <div className="form-row">
+                    <div className="col-md-8 col-lg-8 mb-3">
+                        <label htmlFor="description">Description:&nbsp;</label>
+                        <input type="text" className="form-control" id="description" placeholder="Description" value={props.description} required onChange={props.handleChangeOfDescription}></input>
+                    </div>
                 </div>
-            </div>
-            <div className="form-row">
-                <div className="col-md-8 mb-3">
-                    <label htmlFor="validationDefault03">Description</label>
-                    <input type="text" className="form-control" id="validationDefault03" placeholder="Description" value={props.description}required onChange={props.handleChangeOfDescription}></input>
+                <div className="form-row">
+                    <div className="col-md-3 col-lg-3 mb-3">
+                        <label htmlFor="type">Type:&nbsp;</label>
+                        <select
+                            className="form-control-success"
+                            id="type"
+                            value={props.type}
+                            required
+                            onChange={props.handleChangeOfType}
+                        >
+                            <option value="" hidden>Choose option</option>
+                            <option value="Valstybinė">Valstybinė</option>
+                            <option value="Tautinė-religinė">Tautinė-religinė</option>
+                            <option value="Atmintina">Atmintina</option>
+                            <option value="Netradicinė">Netradicinė</option>
+                            {/* Jeigu yra sąrašas paimtas kaip kintamasi, tada rašoma
+                            {optionList} */}
+                        </select>
+                    </div>
+                    <div className="col-md-4 col-lg-4 mb-3">
+                        &nbsp;&nbsp;&nbsp;<label className="form-check-label" htmlFor="flag">
+                            <input className="form-check-input" type="checkbox" id="flag" value={props.flag} onChange={props.handleChangeOfFlag}></input>
+                            Flag rising</label>
+                    </div>
                 </div>
-            </div>
-            <div className="form-row">
-                <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault04">Type</label>
-                    <input type="text" className="form-control" id="validationDefault04" placeholder="Type" value={props.type}required onChange={props.handleChangeOfType}></input>
-                </div>
-                <div className="col-md-4 mb-3">
-                    <label htmlFor="validationDefault05">Flag on?</label>
-                    <input type="text" className="form-control" id="validationDefault05" placeholder="True or false" value={props.quantity}required onChange={props.handleChangeOfFlag}></input>
-                </div>
-            </div>
-            <button className="btn btn-primary" type="submit" onClick={props.handleSubmit}>Save</button>
-            {/* perdaryti pagal sita
+                <button className="btn btn-primary" type="submit">Save</button>&nbsp;
+                <Link to={`/admin`} className="btn btn-dark" >Cancel</Link>
+                {/* perdaryti pagal sita
             <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={this.props.onSaveClick}>Save</button>
             */}
-        </form>
+            </form>
+        </div>
     );
 }
 
-export default NewProductComponet;
+export default NewHolidayComponet;

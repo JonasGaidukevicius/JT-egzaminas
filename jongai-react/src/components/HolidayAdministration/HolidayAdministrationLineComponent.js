@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import pic from '../HolidayList/img/KingWear-KW06.jpg';
 import { withRouter } from 'react-router';
 
@@ -7,58 +7,69 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const HolidayAdministrationLineComponent = (props) => {
-    
+
     var linkas = "/admin/holidays/" + props.title;
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-2">
-                <Link to={linkas}>{props.title}</Link> 
-                    
-                </div>
-                <div className="col-2">
-                    <img src={pic} alt="Smartphone" width="50px"></img>
-                </div>
-                <div className="col-8">
-                    {/* senas budas
-                    <a href={linkas}>{props.title}</a>
-                    */}
-                    <p>{props.description}</p>
-                    
-                    
-                </div>
-            </div>
-        </div>
+        <tr>
+            <td><Link to={linkas}>{props.title}</Link></td>
+            <td>
+                <img src={pic} alt="Holiday_picture" width="30%"></img>
+            </td>
+            <td>{props.description}</td>
+            <td>
+                <Link
+                    style={{ textDecoration: "none", color: "black", cursor: "default" }}
+                    to={`/holidays/${props.title}`}
+                >
+                    <i
+                        className="mygtukas fas fa-info-circle fa-2x"
+                        title="Šventės informacija"
+                    />
+                </Link>&nbsp;
+                <Link
+                    style={{ textDecoration: "none", color: "black", cursor: "default" }}
+                    to={`/admin/holidays/${props.title}`}
+                >
+                    <i
+                        className="mygtukas far fa-edit fa-2x"
+                        title="Šventės redagavimas"
+                    />
+                </Link>&nbsp;
+                    <i
+                        className="mygtukas fas fa-trash fa-2x"
+                        title="Šventės trynimas"
+                        onClick={() => {props.handleDelete(props.title);}}
+                    />
+            </td>
+        </tr>
+        
+        // SENAS DIV METODAS
+        // < div className = "container" >
+        //     <div className="row">
+        //         <div className="col-sm-3 col-md-2 col-lg-2 mb-3">
+        //             <Link to={linkas}>{props.title}</Link>
+        //         </div>
+        //         <div className="col-sm-3 col-md-2 col-lg-2 mb-3">
+        //             <img src={pic} alt="Holiday_picture" width="50%"></img>
+        //         </div>
+        //         <div className="col-sm-6 col-md-8 col-lg-8 mb-3">
+        //             <p>{props.description}</p>
+        //         </div>
+        //     </div>
+        // </div >
     );
-    }
+}
 
 
-{/*
 
-        <div className="card" style={{ width: "18rem" }}>
-            <img className="card-img-top" src={pic} alt="Smartwatch"></img>
-            <div className="card-body">
-                <h5 className="card-title">{props.title}</h5>
-                <p className="card-text">{props.description}</p>
-                <p className="card-text">Price: {props.price} Euro</p>
-                <p className="card-text">Quantity: {props.quantity} pcs.</p>
-                <a href="#" className="btn btn-primary">Product details</a>
-            </div>
-        </div>
-        );
+// ProductCardComponent.propTypes = {
+//     id: PropTypes.number.isRequired,
+//     title: PropTypes.string.isRequired,
+//     image: PropTypes.string.isRequired,
+//     description: PropTypes.string.isRequired,
+//     price: PropTypes.number.isRequired,
+//     quantity: PropTypes.number.isRequired
+// };
 
-    */}
-
-
-{/*
-ProductCardComponent.propTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    quantity: PropTypes.number.isRequired
-};
-*/}
 
 export default withRouter(HolidayAdministrationLineComponent);

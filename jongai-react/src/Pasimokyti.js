@@ -25,5 +25,5 @@ class Pasimokyti extends React.Component{
 export default Pasimokyti;
 
 //tuomet panaudojimas būtų toks
-{/* <Komponentas papildomas={papildomas}
-    onClick={this.onKomponentoClick} /> */}
+//<Komponentas papildomas={papildomas}
+//    onClick={this.onKomponentoClick} />

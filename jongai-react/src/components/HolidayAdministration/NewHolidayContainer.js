@@ -35,16 +35,15 @@ class NewHolidayContainer extends React.Component {
   }
 
   handleChangeOfFlag = (event) => {
-    this.setState({ flag: event.target.value });
+    //console.log("Kokia vėliavos reikšmė? -> " + event.target.checked);
+    this.setState({ flag: event.target.checked });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
     axios.post('http://localhost:8080/holidays', this.state)
-      .then(function (response) {
-        console.log(response);
-      })
+      .then(response => this.props.history.push(`/admin`)) //reikia nurodyti kelią, kur turėtų atsirasti
       .catch(function (error) {
         console.log(error);
       });
@@ -61,16 +60,24 @@ class NewHolidayContainer extends React.Component {
     this.fromMenu = "Enter new holiday data:"
 
     return (
-      <NewHolidayComponent handleChangeOfTitle={this.handleChangeOfTitle}
+      <NewHolidayComponent
+        title={this.state.title}
+        description={this.state.description}
+        image={this.state.image}
+        type={this.state.type}
+        flag={this.state.flag}
+        handleChangeOfTitle={this.handleChangeOfTitle}
         handleChangeOfImage={this.handleChangeOfImage}
         handleChangeOfDescription={this.handleChangeOfDescription}
         handleChangeOfType={this.handleChangeOfType}
         handleChangeOfFlag={this.handleChangeOfFlag}
         handleSubmit={this.handleSubmit}
+        //TO DO Ar reikia šitą perdavinėti?
         fromMenu={this.fromMenu}
       />
     );
   }
 }
 
+//TO DO Perdaryti, kad būtų be Rūterio
 export default withRouter(NewHolidayContainer);

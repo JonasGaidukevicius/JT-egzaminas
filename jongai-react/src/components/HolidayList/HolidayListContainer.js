@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import HolidayCardComponent from './HolidayCardComponent';
 import axios from 'axios';
 
@@ -47,13 +47,17 @@ class HolidayListContainer extends React.Component {
                         key={index}
                         title={holiday.title}
                         description={holiday.description}
-                        image={holiday.image}  
+                        image={holiday.image}
                         type={holiday.type}
-                        flag={holiday.flag}
+                        flag={holiday.flag === true ? "Yes" : "No"}
                     />
                 );
             });
-            return (<div className="row">{holidayCards}</div>);
+            return (
+                <div className="container">
+                    <div className="row">{holidayCards}</div>
+                </div>
+            );
         }
         return this.state.loading;
     }
