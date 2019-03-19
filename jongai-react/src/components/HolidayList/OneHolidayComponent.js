@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 const OneHolidayComponent = (props) => {
+    let optionAddedCountryList = props.addedCountries.map(v => (
+        <option key={v}>{v}</option>
+    ));
     return (
         <div className="container">
             <div className="row">
@@ -15,7 +18,7 @@ const OneHolidayComponent = (props) => {
                         <h5>Holiday's picture:</h5>
                     </div>
                     <div className="row">
-                        <img src={pic} alt="Smartphone" width="150px"></img>
+                        <img src={"/img/holidays/" + props.image} alt="Holiday_picture" width="150px"></img>
                     </div>
                 </div>
                 <div className="col-md-3 col-lg-3">
@@ -46,6 +49,25 @@ const OneHolidayComponent = (props) => {
                     <div className="row">
                         <Link to={`/`} className="btn btn-dark mt-3">Back</Link>
                     </div>
+                </div>
+                <div className="col-md-3 col-lg-3">
+                    <p>Jau priskirtos šalys</p>
+                    <select className="form-control rounded"
+                          multiple
+                          size="5"
+                          onChange={props.countryRemovingHandler}>
+                        {optionAddedCountryList}
+                    </select>
+                    <button className="btn btn-primary" onClick={props.removeCountriesFromHoliday}>Pašalinti šalis</button>&nbsp;
+
+                    <p>Esamos šalys šalys</p>
+                    <select className="form-control rounded"
+                          multiple
+                          size="5"
+                          onChange={props.availableCountrySelectionHandler}>
+                        {props.showAvailableCountries()}
+                    </select>
+                    <button className="btn btn-primary" onClick={props.addCountriesToHoliday}>Pridėti šalis</button>&nbsp;
                 </div>
             </div>
         </div>

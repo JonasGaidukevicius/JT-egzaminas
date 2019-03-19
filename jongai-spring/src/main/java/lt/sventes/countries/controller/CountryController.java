@@ -53,7 +53,7 @@ public class CountryController {
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create new country", notes = "Creates new country with provided data")
-	//Čia nepakeičiau pavadinimo!!!!
+	// Čia nepakeičiau pavadinimo!!!!
 	public void createHoliday(
 			@ApiParam(value = "Country data", required = true) @Valid @RequestBody final CreateCountryCommand ccc) {
 
@@ -64,8 +64,8 @@ public class CountryController {
 	@RequestMapping(path = "/{oldTitle}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "Edit country", notes = "Change selected country's data")
-	
-	//Čia nepakeičiau metodo pavadinimo!!!
+
+	// Čia nepakeičiau metodo pavadinimo!!!
 	public void updateProduct(
 			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String oldTitle,
 			@ApiParam(value = "Country data", required = true) @Valid @RequestBody final CreateCountryCommand ccc) {
@@ -79,8 +79,8 @@ public class CountryController {
 	@RequestMapping(path = "/{title}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete country", notes = "Deletes selected contry")
-	
-	//Čia nepakeičiau metodo pavadinimo!!!
+
+	// Čia nepakeičiau metodo pavadinimo!!!
 	public void deleteInstitution(@PathVariable final String title) {
 		countryService.deleteCountry(title);
 		System.out.println("Deleting country: " + title);

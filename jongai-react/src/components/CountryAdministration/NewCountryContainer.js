@@ -1,22 +1,17 @@
 import React from 'react';
-import NewHolidayComponent from './NewHolidayComponent';
+import NewCountryComponent from './NewCountryComponent';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
 
-class NewHolidayContainer extends React.Component {
+class NewCountryContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      description: '',
       image: '',
-      type: '',
-      typeList: [],
-      flag: false,
-     
+      president: ''
     };
-    //var fromMenu;
   }
 
   handleChangeOfTitle = (event) => {
@@ -27,25 +22,16 @@ class NewHolidayContainer extends React.Component {
     this.setState({ image: event.target.value });
   }
 
-  handleChangeOfDescription = (event) => {
-    this.setState({ description: event.target.value });
-  }
-
-  handleChangeOfType = (event) => {
-    this.setState({ type: event.target.value });
-  }
-
-  handleChangeOfFlag = (event) => {
-    //console.log("Kokia vėliavos reikšmė? -> " + event.target.checked);
-    this.setState({ flag: event.target.checked });
+  handleChangeOfPresident = (event) => {
+    this.setState({ president: event.target.value });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    axios.post('http://localhost:8080/holidays', this.state)
-      .then(response => this.props.history.push(`/admin`)) //reikia nurodyti kelią, kur turėtų atsirasti
-      .catch(function (error) {
+    axios.post('http://localhost:8080/countries', this.state)
+      .then(response => this.props.history.push(`/admin/country`)) //reikia nurodyti kelią, kur turėtų atsirasti
+      .catch(error => {
         console.log(error);
       });
   }
@@ -66,21 +52,16 @@ class NewHolidayContainer extends React.Component {
 
   render() {
     
-    this.fromMenu = "Enter new holiday data:"
+    this.fromMenu = "Enter new country data:"
 
     return (
-      <NewHolidayComponent
+      <NewCountryComponent
         title={this.state.title}
-        description={this.state.description}
         image={this.state.image}
-        type={this.state.type}
-        typeListt={this.state.typeList}
-        flag={this.state.flag}
+        president={this.state.president}
         handleChangeOfTitle={this.handleChangeOfTitle}
         handleChangeOfImage={this.handleChangeOfImage}
-        handleChangeOfDescription={this.handleChangeOfDescription}
-        handleChangeOfType={this.handleChangeOfType}
-        handleChangeOfFlag={this.handleChangeOfFlag}
+        handleChangeOfPresident={this.handleChangeOfPresident}
         handleSubmit={this.handleSubmit}
         //TO DO Ar reikia šitą perdavinėti?
         fromMenu={this.fromMenu}
@@ -90,4 +71,4 @@ class NewHolidayContainer extends React.Component {
 }
 
 //TO DO Perdaryti, kad būtų be Rūterio
-export default withRouter(NewHolidayContainer);
+export default withRouter(NewCountryContainer);

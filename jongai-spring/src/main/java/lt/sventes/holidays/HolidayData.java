@@ -1,6 +1,8 @@
 package lt.sventes.holidays;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import lt.sventes.countries.Country;
 
 public class HolidayData {
 	private String title;
@@ -8,6 +10,7 @@ public class HolidayData {
 	private String image;
 	private String type;
 	boolean flag;
+	//List<Country> countries;
 	
 	public HolidayData(String title, String description, String image, String type, boolean flag) {
 		super();
@@ -16,6 +19,7 @@ public class HolidayData {
 		this.image = image;
 		this.type = type;
 		this.flag = flag;
+		//this.countries = countries;
 	}
 
 	public String getTitle() {
@@ -57,6 +61,14 @@ public class HolidayData {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+
+//	public List<Country> getCountries() {
+//		return countries;
+//	}
+
+//	public void setCountries(List<Country> countries) {
+//		this.countries = countries;
+//	}
 	
 	
 

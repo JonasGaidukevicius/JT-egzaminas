@@ -1,6 +1,6 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-import pic from '../HolidayList/img/KingWear-KW06.jpg';
+//import pic from '../HolidayList/img/KingWear-KW06.jpg';
 import { withRouter } from 'react-router';
 
 //ar reikia jo? Ar pades jis? 
@@ -13,7 +13,7 @@ const HolidayAdministrationLineComponent = (props) => {
         <tr>
             <td><Link to={linkas}>{props.title}</Link></td>
             <td>
-                <img src={pic} alt="Holiday_picture" width="30%"></img>
+                <img src={"/img/holidays/" + props.image} alt="Holiday_picture" width="30%"></img>
             </td>
             <td>{props.description}</td>
             <td>
