@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const HolidayAdministrationLineComponent = (props) => {
 
-    var linkas = "/admin/holidays/" + props.title;
+    var linkas = "/admin/holidays/" + props.code;
     return (
         <tr>
             <td><Link to={linkas}>{props.title}</Link></td>
@@ -19,7 +19,7 @@ const HolidayAdministrationLineComponent = (props) => {
             <td>
                 <Link
                     style={{ textDecoration: "none", color: "black", cursor: "default" }}
-                    to={`/holidays/${props.title}`}
+                    to={`/holidays/${props.code}`}
                 >
                     <i
                         className="mygtukas fas fa-info-circle fa-2x"
@@ -28,7 +28,7 @@ const HolidayAdministrationLineComponent = (props) => {
                 </Link>&nbsp;
                 <Link
                     style={{ textDecoration: "none", color: "black", cursor: "default" }}
-                    to={`/admin/holidays/${props.title}`}
+                    to={`/admin/holidays/${props.code}`}
                 >
                     <i
                         className="mygtukas far fa-edit fa-2x"
@@ -38,7 +38,7 @@ const HolidayAdministrationLineComponent = (props) => {
                     <i
                         className="mygtukas fas fa-trash fa-2x"
                         title="Šventės trynimas"
-                        onClick={() => {props.handleDelete(props.title);}}
+                        onClick={() => {props.handleDelete(props.code);}}
                     />
             </td>
         </tr>

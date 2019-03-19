@@ -17,6 +17,8 @@ public class Holiday {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column (unique=true, nullable=false)
+	private String code;
 	@Column(unique=true, nullable=false) 
 	private String title;
 	@Column
@@ -46,8 +48,9 @@ public class Holiday {
 
 	
 	//konstruktorius be id
-	public Holiday(String title, String description, String image, String type, boolean flag, List<Country> countries) {
+	public Holiday(String code, String title, String description, String image, String type, boolean flag, List<Country> countries) {
 		//this.id = id;
+		this.code = code;
 		this.title = title;
 		this.description = description;
 		this.image = image;
@@ -63,6 +66,16 @@ public class Holiday {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 

@@ -30,6 +30,7 @@ class HolidayListContainer extends React.Component {
                 return (
                     <HolidayCardComponent
                         key={index}
+                        code={holiday.code}
                         title={holiday.title}
                         description={holiday.description}
                         image={holiday.image}

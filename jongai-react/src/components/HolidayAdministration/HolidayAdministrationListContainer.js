@@ -16,9 +16,9 @@ class HolidayAdministrationListContainer extends React.Component {
 
     
 
-    handleDelete = (title) => {
-        console.log("Noriu ištrinti " + this.state.oldTitle);
-        axios.delete('http://localhost:8080/holidays/' + (title))
+    handleDelete = (code) => {
+        console.log("Noriu ištrinti " + code);
+        axios.delete('http://localhost:8080/holidays/' + (code))
           .then(response => {
             axios.get('http://localhost:8080/holidays')
             .then((response) => {
@@ -47,13 +47,14 @@ class HolidayAdministrationListContainer extends React.Component {
 
     render() {
         if (this.state.holidaysList) {
-            const HolidayCards = this.state.holidaysList.map((product, index) => {
+            const HolidayCards = this.state.holidaysList.map((item, index) => {
                 return (
                     <HolidayAdministrationLineComponent
                         key={index}
-                        title={product.title}
-                        image={product.image}
-                        description={product.description}
+                        code={item.code}
+                        title={item.title}
+                        image={item.image}
+                        description={item.description}
                         handleDelete={this.handleDelete}
                     />
                 );

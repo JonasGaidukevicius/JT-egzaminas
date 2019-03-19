@@ -9,6 +9,7 @@ class OneHolidayContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      code: "",
       title: "",
       image: "",
       description: '',
@@ -52,13 +53,14 @@ class OneHolidayContainer extends React.Component {
   }
 
   getOneHoliday() {
-    const position = this.props.match.params.title;
+    const position = this.props.match.params.code;
     axios.get('http://localhost:8080/holidays/' + (position))
       .then((response) => {
         //this.setState(response.data);
         console.log("-----------------Response data id yra: " + response.data.id);
         console.log("-----------------Response data title yra: " + response.data.title);
         this.setState({
+          code: response.data.code,
           title: response.data.title,
           image: response.data.image,
           description: response.data.description,
@@ -73,7 +75,7 @@ class OneHolidayContainer extends React.Component {
   }
 
   getHolidayCountryList() {
-    const position = this.props.match.params.title;
+    const position = this.props.match.params.code;
     axios.get('http://localhost:8080//holidays/' + position + '/addedCountries')
       .then((response) => {
         this.setState({ addedCountries: response.data })
@@ -142,7 +144,7 @@ class OneHolidayContainer extends React.Component {
   };
 
   addCountriesToHoliday = event => {
-    const position = this.props.match.params.title;
+    const position = this.props.match.params.code;
     axios.put('http://localhost:8080/holidays/' + position + '/addingCountries', this.state.countriesToAdd)
       .then(() => this.getHolidayCountryList())
       .catch(function (error) {
@@ -151,7 +153,7 @@ class OneHolidayContainer extends React.Component {
   }
 
   removeCountriesFromHoliday = event => {
-    const position = this.props.match.params.title;
+    const position = this.props.match.params.code;
     axios.put('http://localhost:8080/holidays/' + position + '/removingCountries', this.state.countriesToRemove)
       .then(() => this.getHolidayCountryList())
       .catch(function (error) {
@@ -163,6 +165,7 @@ class OneHolidayContainer extends React.Component {
     return (
       <div>
         <OneHolidayComponent
+          code={this.state.code}
           title={this.state.title}
           image={this.state.image}
           description={this.state.description}

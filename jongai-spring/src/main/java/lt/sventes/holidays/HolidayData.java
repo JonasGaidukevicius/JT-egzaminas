@@ -5,6 +5,7 @@ import java.util.List;
 import lt.sventes.countries.Country;
 
 public class HolidayData {
+	private String code;
 	private String title;
 	private String description;
 	private String image;
@@ -12,14 +13,23 @@ public class HolidayData {
 	boolean flag;
 	//List<Country> countries;
 	
-	public HolidayData(String title, String description, String image, String type, boolean flag) {
+	public HolidayData(String code, String title, String description, String image, String type, boolean flag) {
 		super();
+		this.code = code;
 		this.title = title;
 		this.description = description;
 		this.image = image;
 		this.type = type;
 		this.flag = flag;
 		//this.countries = countries;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getTitle() {
