@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const CountryAdministrationLineComponent = (props) => {
 
-    var linkas = "/admin/countries/" + props.title;
+    var linkas = "/admin/countries/" + props.countryCode;
     return (
         <tr>
             <td><Link to={linkas}>{props.title}</Link></td>
@@ -25,7 +25,7 @@ const CountryAdministrationLineComponent = (props) => {
                 </Link>&nbsp;
                 <Link
                     style={{ textDecoration: "none", color: "black", cursor: "default" }}
-                    to={`/admin/countries/${props.title}`}
+                    to={`/admin/countries/${props.countryCode}`}
                 >
                     <i
                         className="mygtukas far fa-edit fa-2x"
@@ -35,7 +35,7 @@ const CountryAdministrationLineComponent = (props) => {
                     <i
                         className="mygtukas fas fa-trash fa-2x"
                         title="Šalies trynimas"
-                        onClick={() => {props.handleDelete(props.title);}}
+                        onClick={() => {props.handleDelete(props.countryCode);}}
                     />
             </td>
         </tr>

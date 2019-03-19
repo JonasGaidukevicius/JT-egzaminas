@@ -18,7 +18,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lt.sventes.countries.CountryData;
 import lt.sventes.countries.service.CountryService;
-import lt.sventes.holidays.HolidayData;
 
 @RestController
 @Api(value = "country")
@@ -41,49 +40,48 @@ public class CountryController {
 	}
 
 	// vienos šalies gavimas
-	@RequestMapping(path = "/{title}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{countryCode}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get country", notes = "Returns selected country")
-	public CountryData getCountryByTitle(
-			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String title) {
+	public CountryData getOneCountryByCountryCode(
+			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String countryCode) {
 
-		return countryService.findCountryByTitle(title);
+		return countryService.findCountryByCountryCode(countryCode);
+		
 	}
 
 	// naujos šalies suvedimas
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create new country", notes = "Creates new country with provided data")
-	// Čia nepakeičiau pavadinimo!!!!
-	public void createHoliday(
+	public void createCountry(
 			@ApiParam(value = "Country data", required = true) @Valid @RequestBody final CreateCountryCommand ccc) {
 
 		countryService.createCountry(ccc.getTitle(), ccc.getImage(), ccc.getPresident());
 	}
 
 	// šalies atnaujinimas
-	@RequestMapping(path = "/{oldTitle}", method = RequestMethod.PUT)
+	@RequestMapping(path = "/{countryCode}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "Edit country", notes = "Change selected country's data")
 
-	// Čia nepakeičiau metodo pavadinimo!!!
-	public void updateProduct(
-			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String oldTitle,
+	public void updateCountry(
+			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String countryCode,
 			@ApiParam(value = "Country data", required = true) @Valid @RequestBody final CreateCountryCommand ccc) {
 
-		countryService.updateCountry(oldTitle, ccc.getTitle(), ccc.getImage(), ccc.getPresident());
+		countryService.updateCountry(countryCode, ccc.getTitle(), ccc.getImage(), ccc.getPresident());
 
 	}
 
 	// šalies trynimas------------------------------------------
 
-	@RequestMapping(path = "/{title}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/{countryCode}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete country", notes = "Deletes selected contry")
+	@ApiOperation(value = "Delete country", notes = "Deletes selected country")
 
-	// Čia nepakeičiau metodo pavadinimo!!!
-	public void deleteInstitution(@PathVariable final String title) {
-		countryService.deleteCountry(title);
-		System.out.println("Deleting country: " + title);
+	
+	public void deleteCountry(@PathVariable final String countryCode) {
+		countryService.deleteCountry(countryCode);
+		System.out.println("Deleting country: " + countryCode);
 	}
 
 }

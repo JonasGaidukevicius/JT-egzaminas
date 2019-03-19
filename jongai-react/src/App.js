@@ -41,14 +41,14 @@ class App extends Component {
           <NavigationContainer>
             <Switch>
               <Route exact path='/' component={HolidayListContainer} />
-              <Route exact path="/holidays/:title" component={OneHolidayContainer} />
+              <Route exact path="/holidays/:code" component={OneHolidayContainer} />
               <Route exact path='/admin' component={HolidayAdministrationListContainer} />
               <Route exact path='/admin/country' component={CountryAdministrationContainer} />
               {/* <Route exact path='/pasimokyti' component={Pasimokyti} />           */}
               <Route exact path="/admin/holidays/new" component={NewHolidayContainer} />
-              <Route exact path="/admin/holidays/:title" component={EditHolidayContainer} />
+              <Route exact path="/admin/holidays/:code" component={EditHolidayContainer} />
               <Route exact path="/admin/countries/new" component={NewCountryContainer} />
-              <Route exact path="/admin/countries/:title" component={EditCountryContainer} />
+              <Route exact path="/admin/countries/:countryCode" component={EditCountryContainer} />
               {/* <Route exact path="/shopping-Cart/:user" component={ShoppingCartContainer} />                                */}
               <Route path="*" component={NoMatch} />
               <Route component={NoMatch} />

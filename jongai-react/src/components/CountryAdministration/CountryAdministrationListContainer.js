@@ -14,8 +14,8 @@ class CountryAdministrationListContainer extends React.Component {
         };
     }
 
-    handleDelete = (title) => {
-        axios.delete('http://localhost:8080/countries/' + (title))
+    handleDelete = (countryCode) => {
+        axios.delete('http://localhost:8080/countries/' + (countryCode))
           .then(response => {
             axios.get('http://localhost:8080/countries')
             .then((response) => {
@@ -48,6 +48,7 @@ class CountryAdministrationListContainer extends React.Component {
                 return (
                     <CountryAdministrationLineComponent
                         key={index}
+                        countryCode={item.countryCode}
                         title={item.title}
                         image={item.image}
                         handleDelete={this.handleDelete}

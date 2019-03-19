@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
     }; */
 
 const HolidayCardComponent = (props) => {
-    var linkas = "/holidays/" + props.title;
+    var linkas = "/holidays/" + props.code;
     return (
         <div className="card p-3 m-1" style={{ width: "18rem" }}>
             <img className="card-img-top" src={"/img/holidays/" + props.image} alt="Holiday_picture"></img>
@@ -24,8 +24,9 @@ const HolidayCardComponent = (props) => {
         );
 }
 
+
 HolidayCardComponent.propTypes = {
-    //id:PropTypes.number.isRequired,
+    code: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

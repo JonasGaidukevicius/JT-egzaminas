@@ -17,6 +17,8 @@ public class Country {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column (unique=true, nullable=false)
+	private String countryCode;
 	@Column(unique=true, nullable=false) 
 	private String title;
 	@Column
@@ -36,10 +38,19 @@ public class Country {
 	}
 
 	//konstruktorius be id
-	public Country(String title, String image, String president) {
+	public Country(String countryCode, String title, String image, String president) {
+		this.countryCode = countryCode;
 		this.title = title;
 		this.image = image;
 		this.president = president;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 	public long getId() {

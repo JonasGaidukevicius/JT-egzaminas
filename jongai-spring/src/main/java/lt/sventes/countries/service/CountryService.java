@@ -3,6 +3,7 @@ package lt.sventes.countries.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,20 +22,15 @@ public class CountryService {
 	// Šalių nuskaitymas
 	@Transactional(readOnly = true)
 	public List<CountryData> getFullListOfCountries() {
-		return countryRepository.findAll().stream().map((country) ->
-		new CountryData(country.getTitle(),	
-						country.getImage(),
-						country.getPresident()
-						)).collect(Collectors.toList());		
+		return countryRepository.findAll().stream().map((country) -> new CountryData(country.getCountryCode(),
+				country.getTitle(), country.getImage(), country.getPresident())).collect(Collectors.toList());
 	}
-	
+
 	// Vienos šalies nuskaitymas
 	@Transactional(readOnly = true)
-	public CountryData findCountryByTitle(String title) {
-		// System.out.println("------------------ koks čia produktas? -> " +
-		// productRepository.findProductById(id).toString());
-		Country currentCountry = countryRepository.findCountryByTitle(title);
-		CountryData countryToController = new CountryData(currentCountry.getTitle(),
+	public CountryData findCountryByCountryCode(String countryCode) {
+		Country currentCountry = countryRepository.findCountryByCountryCode(countryCode);
+		CountryData countryToController = new CountryData(currentCountry.getCountryCode(), currentCountry.getTitle(),
 				currentCountry.getImage(), currentCountry.getPresident());
 		return countryToController;
 	}
@@ -42,16 +38,17 @@ public class CountryService {
 	// Naujos šalies sukūrimas
 	@Transactional
 	public void createCountry(String title, String image, String president) {
-		Country newCountry = new Country(title, image, president);
+		// 1.Sugeneruoju atsitiktinę eilutę iš 7 simbolių
+		String countryCode = RandomStringUtils.random(7, true, true) + title.replaceAll("\\s+", "");
+		Country newCountry = new Country(countryCode, title, image, president);
 		countryRepository.save(newCountry);
 	}
 
 	// Esamos šalies duomenų pakeitimas
 	@Transactional
-	public void updateCountry(String currentTitle, String title, String image, String president) {
-		System.out.println("--------------------Atėjau iki čia. Esamas Name yra - " + currentTitle);
-		Country countryToUpdate = countryRepository.findCountryByTitle(currentTitle);
-		//System.out.println("------------------Surastos institucijos vardas yra " + holidayToUpdate.getTitle());
+	public void updateCountry(String countryCode, String title, String image, String president) {
+		
+		Country countryToUpdate = countryRepository.findCountryByCountryCode(countryCode);
 		countryToUpdate.setTitle(title);
 		countryToUpdate.setImage(image);
 		countryToUpdate.setPresident(president);
@@ -60,7 +57,8 @@ public class CountryService {
 
 	// Esamos šalies ištrynimas (metodas aprašytas Repositorijoje)
 	@Transactional
-	public void deleteCountry(String title) {
-		countryRepository.deleteCountryByTitle(title);
+	public void deleteCountry(String countryCode) {
+		countryRepository.deleteCountryByCountryCode(countryCode);
+		//countryRepository.deleteCountryByTitle(countryCode);
 	}
 }

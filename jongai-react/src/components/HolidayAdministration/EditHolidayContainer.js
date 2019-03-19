@@ -9,6 +9,7 @@ class EditHolidayContainer extends React.Component {
 
     this.state = {
       oldTitle: "",
+      code: "",
       title: "",
       image: "",
       description: "",
@@ -18,7 +19,8 @@ class EditHolidayContainer extends React.Component {
   }
 
   componentDidMount() {
-    const position = this.props.match.params.title;
+    const position = this.props.match.params.code;
+    console.log("Gaunu tokį position - " + position);
 
     axios.get('http://localhost:8080/holidays/' + (position))
       .then((response) => {
@@ -28,6 +30,7 @@ class EditHolidayContainer extends React.Component {
         // console.log(response.data.id);
         //console.log(response.data.title);
         this.setState({ oldTitle: response.data.title });
+        this.setState({ code: response.data.code});
         this.setState({ title: response.data.title });
         this.setState({ image: response.data.image });
         this.setState({ description: response.data.description });
@@ -66,7 +69,7 @@ class EditHolidayContainer extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     //const position = this.props.match.params.id;
-    axios.put('http://localhost:8080/holidays/' + (this.state.oldTitle), this.state)
+    axios.put('http://localhost:8080/holidays/' + (this.state.code), this.state)
 
       .then(response => this.props.history.push(`/admin`))
       .catch(function (error) {
@@ -77,8 +80,8 @@ class EditHolidayContainer extends React.Component {
 
   handleDelete = (event) => {
     event.preventDefault();
-    console.log("Noriu ištrinti " + this.state.oldTitle);
-    axios.delete('http://localhost:8080/holidays/' + (this.state.oldTitle))
+    console.log("Noriu ištrinti " + this.state.code);
+    axios.delete('http://localhost:8080/holidays/' + (this.state.code))
       .then(response => this.props.history.push(`/admin`))
       .catch(function (error) {
         console.log(error);
@@ -90,6 +93,7 @@ class EditHolidayContainer extends React.Component {
 
     return (
       <EditHolidayComponent
+        currentCode={this.state.code}
         currentTitle={this.state.title}
         currentImage={this.state.image}
         currentDescription={this.state.description}
