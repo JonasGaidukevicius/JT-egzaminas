@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import pic from './img/KingWear-KW06.jpg';
+//import pic from './img/KingWear-KW06.jpg';
 import {Link} from 'react-router-dom';
 
 /* var styles = {
@@ -12,7 +12,7 @@ const HolidayCardComponent = (props) => {
     var linkas = "/holidays/" + props.title;
     return (
         <div className="card p-3 m-1" style={{ width: "18rem" }}>
-            <img className="card-img-top" src={pic} alt="Holiday_picture"></img>
+            <img className="card-img-top" src={"/img/holidays/" + props.image} alt="Holiday_picture"></img>
             <div className="card-body">
                 <h5 className="card-title">{props.title}</h5>
                 <p className="card-text">{props.description}</p>

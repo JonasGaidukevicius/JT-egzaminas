@@ -27,7 +27,7 @@ public class CountryService {
 						country.getPresident()
 						)).collect(Collectors.toList());		
 	}
-
+	
 	// Vienos šalies nuskaitymas
 	@Transactional(readOnly = true)
 	public CountryData findCountryByTitle(String title) {

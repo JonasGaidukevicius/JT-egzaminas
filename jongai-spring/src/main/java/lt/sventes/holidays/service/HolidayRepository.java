@@ -7,6 +7,7 @@ import lt.sventes.holidays.Holiday;
 public interface HolidayRepository extends JpaRepository<Holiday, Long> {
 	Holiday findHolidayByTitle(String title);
 	void deleteHolidayByTitle(String title);
+
 	
 	
 }

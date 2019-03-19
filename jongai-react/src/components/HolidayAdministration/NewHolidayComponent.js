@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 
-const NewHolidayComponet = (props) => {
-
+const NewHolidayComponet = props => {
+    //Jeigu yra pasirinkimo sąrašo nuskaitymas iš serverio, tai čia apsirašau kintamąjį su pasirinkimų variantais
+    // let optionList = props.typeList.map(v => (
+    //     <option key={v}>{v}</option>
+    //   ));
     return (
         <div className="container">
             <form onSubmit={props.handleSubmit}>
@@ -43,7 +46,7 @@ const NewHolidayComponet = (props) => {
                             <option value="Tautinė-religinė">Tautinė-religinė</option>
                             <option value="Atmintina">Atmintina</option>
                             <option value="Netradicinė">Netradicinė</option>
-                            {/* Jeigu yra sąrašas paimtas kaip kintamasi, tada rašoma
+                            {/* Jeigu yra sąrašas paimtas kaip kintamasis, tada rašoma
                             {optionList} */}
                         </select>
                     </div>

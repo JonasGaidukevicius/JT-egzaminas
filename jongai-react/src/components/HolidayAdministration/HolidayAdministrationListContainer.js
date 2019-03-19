@@ -9,7 +9,7 @@ class HolidayAdministrationListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            holidays: '',
+            holidaysList: '',
             loading: 'Loading holidays. Please wait...'
         };
     }
@@ -36,7 +36,7 @@ class HolidayAdministrationListContainer extends React.Component {
     componentDidMount() {
         axios.get('http://localhost:8080/holidays')
             .then((response) => {
-                this.setState({ holidays: response.data });
+                this.setState({ holidaysList: response.data });
                 //console.log(response.data);
                 //console.log("Produktai yra - " + this.state.holidays);
             })
@@ -46,8 +46,8 @@ class HolidayAdministrationListContainer extends React.Component {
     }
 
     render() {
-        if (this.state.holidays) {
-            const HolidayCards = this.state.holidays.map((product, index) => {
+        if (this.state.holidaysList) {
+            const HolidayCards = this.state.holidaysList.map((product, index) => {
                 return (
                     <HolidayAdministrationLineComponent
                         key={index}

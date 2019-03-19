@@ -1,12 +1,16 @@
 package lt.sventes.countries;
 
-import javax.persistence.CascadeType;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+
+import lt.sventes.holidays.Holiday;
 
 @Entity
 public class Country {
@@ -19,6 +23,8 @@ public class Country {
 	private String image;
 	@Column
 	private String president;
+	@ManyToMany(mappedBy="countries")
+	List<Holiday> holidays = new ArrayList<>();
 	
 	//@OneToOne(cascade = {CascadeType.ALL}) // MERGE, CascadeType.DETACH})
 	//private ProductDetails productDetails;
@@ -66,6 +72,24 @@ public class Country {
 
 	public void setPresident(String president) {
 		this.president = president;
+	}
+
+	public List<Holiday> getHolidays() {
+		return holidays;
+	}
+
+	public void setHolidays(List<Holiday> holidays) {
+		this.holidays = holidays;
+	}
+	
+	public void addHoliday(Holiday holiday) {
+		this.holidays.add(holiday);
+		holiday.getCountries().add(this);
+	}
+	
+	public void removeHoliday(Holiday holiday) {
+		this.holidays.remove(holiday);
+		holiday.getCountries().remove(this);
 	}
 	
 }
