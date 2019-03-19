@@ -39,7 +39,7 @@ public class CountryService {
 	@Transactional
 	public void createCountry(String title, String image, String president) {
 		// 1.Sugeneruoju atsitiktinę eilutę iš 7 simbolių
-		String countryCode = RandomStringUtils.random(7, true, true) + title.replaceAll("\\s+", "");
+		String countryCode = RandomStringUtils.random(7, true, true) + "_" + title.replaceAll("\\s+", "");
 		Country newCountry = new Country(countryCode, title, image, president);
 		countryRepository.save(newCountry);
 	}
@@ -61,4 +61,15 @@ public class CountryService {
 		countryRepository.deleteCountryByCountryCode(countryCode);
 		//countryRepository.deleteCountryByTitle(countryCode);
 	}
+	
+	// Vienos šalies švenčių nuskaitymas
+		@Transactional(readOnly = true)
+		public List<String> getCountryHolidays(String countryCode) {
+			Country currentCountry = countryRepository.findCountryByCountryCode(countryCode);
+			
+			return currentCountry.getHolidays().stream().map((holiday) -> holiday.getTitle()).collect(Collectors.toList());
+			//return currentHoliday.getCountries().stream().map((country) -> country.getTitle()).collect(Collectors.toList());
+
+		}
+
 }

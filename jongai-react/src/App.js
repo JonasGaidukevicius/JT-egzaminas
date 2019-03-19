@@ -16,6 +16,7 @@ import OneHolidayContainer from './components/HolidayList/OneHolidayContainer';
 import NewCountryContainer from './components/CountryAdministration/NewCountryContainer';
 import EditCountryContainer from './components//CountryAdministration/EditCountryContainer';
 import Pasimokyti from './Pasimokyti';
+import OneCountryContainer from './components/CountryList/OneCountryContainer';
 
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
               <Route exact path="/admin/holidays/:code" component={EditHolidayContainer} />
               <Route exact path="/admin/countries/new" component={NewCountryContainer} />
               <Route exact path="/admin/countries/:countryCode" component={EditCountryContainer} />
+              <Route exact path="/countries/:countryCode" component={OneCountryContainer} />
               {/* <Route exact path="/shopping-Cart/:user" component={ShoppingCartContainer} />                                */}
               <Route path="*" component={NoMatch} />
               <Route component={NoMatch} />
