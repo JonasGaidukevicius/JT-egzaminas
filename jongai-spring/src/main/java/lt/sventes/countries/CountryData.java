@@ -3,15 +3,25 @@ package lt.sventes.countries;
 import javax.persistence.Column;
 
 public class CountryData {
+	private String countryCode;
 	private String title;
 	private String image;
 	private String president;
 	
-	public CountryData(String title, String image, String president) {
+	public CountryData(String countryCode, String title, String image, String president) {
 		super();
+		this.countryCode = countryCode;
 		this.title = title;
 		this.image = image;
 		this.president = president;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 	public String getTitle() {

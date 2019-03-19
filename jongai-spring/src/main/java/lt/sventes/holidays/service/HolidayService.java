@@ -117,6 +117,8 @@ public class HolidayService {
 
 		//Holiday currentHoliday = holidayRepository.findHolidayByTitle(title);
 		Holiday currentHoliday = holidayRepository.findHolidayByCode(code);
+		
+		
 		List<Country> alreadyAddedCountryList = currentHoliday.getCountries();
 		List<String> alreadyAddedCountryStringList = alreadyAddedCountryList.stream()
 				.map((country) -> country.getTitle()).collect(Collectors.toList());
