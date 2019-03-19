@@ -83,5 +83,15 @@ public class CountryController {
 		countryService.deleteCountry(countryCode);
 		System.out.println("Deleting country: " + countryCode);
 	}
+	
+	// Vienos šalies švenčių nuskaitymas
+		@RequestMapping(path = "/{countryCode}/addedHolidays", method = RequestMethod.GET)
+		@ResponseStatus(HttpStatus.OK)
+		@ApiOperation(value = "Vienos šalies švenčių gavimas", notes = "Kokioms šventėms yra priskirta šalis")
+		public List<String> getCountryHolidays(
+				@ApiParam(value = "Holiday title", required = true)
+				@PathVariable final String countryCode) {
+			return countryService.getCountryHolidays(countryCode);
+		}
 
 }

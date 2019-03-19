@@ -16,7 +16,7 @@ const CountryAdministrationLineComponent = (props) => {
             <td>
                 <Link
                     style={{ textDecoration: "none", color: "black", cursor: "default" }}
-                    to={`/holidays/${props.title}`}
+                    to={`/countries/${props.countryCode}`}
                 >
                     <i
                         className="mygtukas fas fa-info-circle fa-2x"

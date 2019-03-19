@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.extern.slf4j.Slf4j;
 import lt.sventes.countries.Country;
 import lt.sventes.countries.service.CountryRepository;
 import lt.sventes.holidays.Holiday;
 import lt.sventes.holidays.HolidayData;
 
 @Service
+@Slf4j
 public class HolidayService {
 
 	@Autowired
@@ -60,6 +62,7 @@ public class HolidayService {
 		code += "_" + modifiedTitle;
 		Holiday newHoliday = new Holiday(code, title, description, image, type, flag, countries);
 		holidayRepository.save(newHoliday);
+		log.info("Sukurta šventė " + title);
 	}
 
 	// Esamos šventės duomenų pakeitimas
