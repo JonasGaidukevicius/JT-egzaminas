@@ -40,7 +40,7 @@ class OneCountryContainer extends React.Component {
 
   getCountryHolidayList() {
     const position = this.props.match.params.countryCode;
-    axios.get('http://localhost:8080//countries/' + position + '/addedHolidays')
+    axios.get('http://localhost:8080/countries/' + position + '/addedHolidays')
       .then((response) => {
         this.setState({ addedHolidays: response.data })
       })

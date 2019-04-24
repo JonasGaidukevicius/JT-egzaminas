@@ -90,8 +90,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     	.permitAll()
                     .antMatchers("/holidays")
                     	.permitAll()
-                    .antMatchers("/holidays/**")
-                    	.permitAll()
                     .antMatchers("/holidays/**/addedCountries")
                     	.permitAll()
                     .antMatchers("/holidays/**/addingCountries")
