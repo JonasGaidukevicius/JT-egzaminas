@@ -77,6 +77,7 @@ public class HolidayService {
 		holidayToUpdate.setType(type);
 		holidayToUpdate.setFlag(flag);
 		holidayRepository.save(holidayToUpdate);
+		log.info("Atnaujinta šventė " + title);
 	}
 
 	// Esamos šventės ištrynimas (metodas aprašytas Repositorijoje)
@@ -84,6 +85,7 @@ public class HolidayService {
 	public void deleteHoliday(String code) {
 		//holidayRepository.deleteHolidayByTitle(title);
 		holidayRepository.deleteHolidayByCode(code);
+		log.info("Ištrinta šventė " + code);
 	}
 
 	// Vienos šventės šalių nuskaitymas

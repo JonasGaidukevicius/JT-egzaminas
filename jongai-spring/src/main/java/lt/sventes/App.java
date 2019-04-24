@@ -32,7 +32,7 @@ public class App extends SpringBootServletInitializer {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("E-Shop REST Documentation").version("0.0.1-SNAPSHOT").build();
+		return new ApiInfoBuilder().title("Holidays Documentation").version("0.0.1-SNAPSHOT").build();
 	}
 
 }
