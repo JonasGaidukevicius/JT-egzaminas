@@ -1,5 +1,4 @@
 import React from 'react';
-//import UserContext from '../../UserContext';
 import NavigationComponent from './NavigationComponent';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import HolidayListContainer from '../HolidayList/HolidayListContainer';

@@ -1,6 +1,5 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-//import pic from '../../img/countries/lithuania.png';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 

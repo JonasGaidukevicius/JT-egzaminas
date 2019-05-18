@@ -1,7 +1,6 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 import CountryAdministrationLineComponent from './CountryAdministrationLineComponent';
-//import MyProvider from '../App';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 

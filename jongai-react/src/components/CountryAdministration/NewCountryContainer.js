@@ -3,7 +3,6 @@ import NewCountryComponent from './NewCountryComponent';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
-
 class NewCountryContainer extends React.Component {
   constructor(props) {
     super(props);

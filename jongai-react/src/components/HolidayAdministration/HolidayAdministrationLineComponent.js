@@ -1,9 +1,6 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-//import pic from '../HolidayList/img/KingWear-KW06.jpg';
 import { withRouter } from 'react-router';
-
-//ar reikia jo? Ar pades jis? 
 import { Link } from 'react-router-dom';
 
 const HolidayAdministrationLineComponent = (props) => {
