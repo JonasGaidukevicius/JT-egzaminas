@@ -1,8 +1,8 @@
-package lt.sventes.holidays;
+package lt.sventes.holidays.model;
 
 import java.util.List;
 
-import lt.sventes.countries.Country;
+import lt.sventes.countries.model.Country;
 
 public class HolidayData {
 	private String code;

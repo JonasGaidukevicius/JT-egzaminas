@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lt.sventes.countries.Country;
+import lt.sventes.countries.model.Country;
 import lt.sventes.countries.service.CountryService;
-import lt.sventes.holidays.HolidayData;
+import lt.sventes.holidays.model.HolidayData;
 import lt.sventes.holidays.service.HolidayService;
 
 @RestController

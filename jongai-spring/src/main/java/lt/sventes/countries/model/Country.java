@@ -1,4 +1,4 @@
-package lt.sventes.countries;
+package lt.sventes.countries.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import lt.sventes.holidays.Holiday;
+import lt.sventes.holidays.model.Holiday;
 
 @Entity
 public class Country {

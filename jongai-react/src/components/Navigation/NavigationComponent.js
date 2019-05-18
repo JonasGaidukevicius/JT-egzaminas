@@ -16,6 +16,21 @@ var NavigationComponent = (props) => {
                     <li className="nav-item">
                         <Link to='/admin/country' className="btn btn-success">Country administration</Link> &nbsp;
                     </li>
+                    {/* Login mygtukas yra nereikalingas
+                    <li className="nav-item">
+                        <Link to='/login' className="btn btn-success">Login</Link> &nbsp;
+                    </li> */}
+
+                    {/* Cia yra Link, bet ji perdarau i Button
+                    <li className="nav-item">
+                        <Link to='/logout' className="btn btn-success">Logout</Link> &nbsp;
+                    </li> */}
+                    <li className="nav-item">
+                        <button className="btn btn-danger" onClick={props.onClickLogoutHandler}>Logout</button>&nbsp;
+                    </li>
+                    <li className="nav-item">
+                        <Link to='/newUser' className="btn btn-primary">Create new user</Link> &nbsp;
+                    </li>
                 </ul>
 
                 {/* <form className="form-inline">

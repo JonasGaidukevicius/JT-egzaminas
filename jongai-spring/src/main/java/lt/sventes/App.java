@@ -1,5 +1,9 @@
 package lt.sventes;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -16,6 +20,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
+	
+	//Šitas metodas įtrauktas iš puslapio, kur pasakoja, kaip įdiegti SpringSecirity
+	@PostConstruct
+	void init() {
+		TimeZone.setDefault(TimeZone.getTimeZone("CET"));
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
@@ -32,7 +45,7 @@ public class App extends SpringBootServletInitializer {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("E-Shop REST Documentation").version("0.0.1-SNAPSHOT").build();
+		return new ApiInfoBuilder().title("Holidays Documentation").version("0.0.1-SNAPSHOT").build();
 	}
 
 }

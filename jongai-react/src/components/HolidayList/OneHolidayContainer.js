@@ -76,7 +76,7 @@ class OneHolidayContainer extends React.Component {
 
   getHolidayCountryList() {
     const position = this.props.match.params.code;
-    axios.get('http://localhost:8080//holidays/' + position + '/addedCountries')
+    axios.get('http://localhost:8080/holidays/' + position + '/addedCountries')
       .then((response) => {
         this.setState({ addedCountries: response.data })
       })
@@ -178,7 +178,6 @@ class OneHolidayContainer extends React.Component {
           addCountriesToHoliday={this.addCountriesToHoliday}
           removeCountriesFromHoliday={this.removeCountriesFromHoliday}
           countryRemovingHandler={this.countryRemovingHandler}
-
         />
         {/* <UserContext.Consumer>
                 {

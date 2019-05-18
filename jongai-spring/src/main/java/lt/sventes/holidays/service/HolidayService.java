@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import lt.sventes.countries.Country;
+import lt.sventes.countries.model.Country;
 import lt.sventes.countries.service.CountryRepository;
-import lt.sventes.holidays.Holiday;
-import lt.sventes.holidays.HolidayData;
+import lt.sventes.holidays.model.Holiday;
+import lt.sventes.holidays.model.HolidayData;
 
 @Service
 @Slf4j
@@ -22,7 +22,7 @@ public class HolidayService {
 	private HolidayRepository holidayRepository;
 
 	@Autowired
-	CountryRepository countryRepository;
+	private CountryRepository countryRepository;
 
 	// Visų švenčių nuskaitymas
 	@Transactional(readOnly = true)
@@ -77,6 +77,7 @@ public class HolidayService {
 		holidayToUpdate.setType(type);
 		holidayToUpdate.setFlag(flag);
 		holidayRepository.save(holidayToUpdate);
+		log.info("Atnaujinta šventė " + title);
 	}
 
 	// Esamos šventės ištrynimas (metodas aprašytas Repositorijoje)
@@ -84,6 +85,7 @@ public class HolidayService {
 	public void deleteHoliday(String code) {
 		//holidayRepository.deleteHolidayByTitle(title);
 		holidayRepository.deleteHolidayByCode(code);
+		log.info("Ištrinta šventė " + code);
 	}
 
 	// Vienos šventės šalių nuskaitymas
@@ -99,7 +101,6 @@ public class HolidayService {
 	// Šalių priskyrimas šventei
 	@Transactional
 	public void addCountryToHoliday(String code, List<String> countryList) {
-		//Holiday currentHoliday = holidayRepository.findHolidayByTitle(title);
 		Holiday currentHoliday = holidayRepository.findHolidayByCode(code);
 		List<Country> alreadyAddedCountryList = currentHoliday.getCountries();
 		List<String> alreadyAddedCountryStringList = alreadyAddedCountryList.stream()

@@ -1,4 +1,4 @@
-package lt.sventes.countries;
+package lt.sventes.countries.model;
 
 import javax.persistence.Column;
 
