@@ -1,7 +1,6 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 import HolidayAdministrationLineComponent from './HolidayAdministrationLineComponent';
-//import MyProvider from '../App';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -13,8 +12,6 @@ class HolidayAdministrationListContainer extends React.Component {
             loading: 'Loading holidays. Please wait...'
         };
     }
-
-    
 
     handleDelete = (code) => {
         console.log("Noriu ištrinti " + code);

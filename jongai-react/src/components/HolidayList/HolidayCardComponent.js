@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import pic from './img/KingWear-KW06.jpg';
 import {Link} from 'react-router-dom';
 
 /* var styles = {

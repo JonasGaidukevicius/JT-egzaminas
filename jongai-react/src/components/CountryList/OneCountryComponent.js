@@ -1,10 +1,6 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-//import pic from './img/KingWear-KW06.jpg';
 import { Link } from 'react-router-dom';
-//import UserContext from '../../UserContext';
-// Stilius importuoju iš css failo
-//import './styles.css';
 import '../HolidayList/styles.css';
 
 const OneCountryComponent = (props) => {

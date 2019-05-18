@@ -1,5 +1,4 @@
 import React from 'react';
-import NewHolidayComponent from './NewUserComponent';
 import NewUserComponet from './NewUserComponent';
 import axios from 'axios';
 import { withRouter } from 'react-router';

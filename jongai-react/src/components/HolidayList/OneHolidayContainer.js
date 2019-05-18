@@ -2,8 +2,6 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import OneHolidayComponent from './OneHolidayComponent';
 import axios from 'axios';
-//import UserContext from '../../UserContext';
-//import AddToCartComponent from './AddTopCartComponent';
 
 class OneHolidayContainer extends React.Component {
   constructor(props, context) {

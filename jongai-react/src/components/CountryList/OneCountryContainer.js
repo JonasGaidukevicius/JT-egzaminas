@@ -2,8 +2,6 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import OneCountryComponent from './OneCountryComponent';
 import axios from 'axios';
-//import UserContext from '../../UserContext';
-//import AddToCartComponent from './AddTopCartComponent';
 
 class OneCountryContainer extends React.Component {
   constructor(props, context) {
