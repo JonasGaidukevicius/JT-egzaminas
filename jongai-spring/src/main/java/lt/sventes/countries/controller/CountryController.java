@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lt.sventes.countries.CountryData;
+import lt.sventes.countries.model.CountryData;
 import lt.sventes.countries.service.CountryService;
 
 @RestController

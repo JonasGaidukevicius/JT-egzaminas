@@ -178,7 +178,6 @@ class OneHolidayContainer extends React.Component {
           addCountriesToHoliday={this.addCountriesToHoliday}
           removeCountriesFromHoliday={this.removeCountriesFromHoliday}
           countryRemovingHandler={this.countryRemovingHandler}
-
         />
         {/* <UserContext.Consumer>
                 {

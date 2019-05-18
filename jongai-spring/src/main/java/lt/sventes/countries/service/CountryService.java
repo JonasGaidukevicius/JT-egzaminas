@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lt.sventes.countries.Country;
-import lt.sventes.countries.CountryData;
-import lt.sventes.holidays.Holiday;
-import lt.sventes.holidays.HolidayData;
+import lt.sventes.countries.model.Country;
+import lt.sventes.countries.model.CountryData;
+import lt.sventes.holidays.model.Holiday;
+import lt.sventes.holidays.model.HolidayData;
 
 @Service
 public class CountryService {
@@ -68,7 +68,6 @@ public class CountryService {
 			Country currentCountry = countryRepository.findCountryByCountryCode(countryCode);
 			
 			return currentCountry.getHolidays().stream().map((holiday) -> holiday.getTitle()).collect(Collectors.toList());
-			//return currentHoliday.getCountries().stream().map((country) -> country.getTitle()).collect(Collectors.toList());
 
 		}
 

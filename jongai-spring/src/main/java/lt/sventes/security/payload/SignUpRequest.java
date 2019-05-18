@@ -1,6 +1,8 @@
 package lt.sventes.security.payload;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class SignUpRequest {
     @NotBlank
@@ -19,6 +21,11 @@ public class SignUpRequest {
     @NotBlank
     @Size(min = 6, max = 20)
     private String password;
+
+	// Mano laukas
+	@NotBlank
+	@Size(min = 1, max = 20)
+	private String role;
 
     public String getName() {
         return name;
@@ -51,4 +58,14 @@ public class SignUpRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	// Mano sukurto lauko seteris ir geteris
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 }
