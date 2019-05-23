@@ -3,7 +3,6 @@ package lt.sventes.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -71,10 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                 .authorizeRequests()
-                    .antMatchers("/",
-                    		"/**",
-                    		"/**/**",
-               
+				.antMatchers(
                         "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",
@@ -84,30 +80,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                         .permitAll()
-                    .antMatchers("/api/auth/**")
+				.antMatchers("/api/auth/signin") // Reiškia, kad tik prie logino gali visi prieiti
                         .permitAll()
-				.antMatchers("/users").permitAll()
-                    .antMatchers("/console")
-                    	.permitAll()
-                    .antMatchers("/holidays")
-                    	.permitAll()
-                    .antMatchers("/holidays/**/addedCountries")
-                    	.permitAll()
-                    .antMatchers("/holidays/**/addingCountries")
-                    	.permitAll()
-                    .antMatchers("/holidays/**")
-                    	.permitAll()
-                    .antMatchers("/countries")
-                    	.permitAll()
-                    .antMatchers("/countries/**")
-                    	.permitAll()
-                    .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
-                        .permitAll()
-                    .antMatchers(HttpMethod.GET, "/holidays/**", "/api/users/**")
-                        .permitAll()
-                    .anyRequest()
+				// .antMatchers("/users")
+				// .permitAll()
+				// .antMatchers("/console")
+				// .permitAll()
+				// .antMatchers("/holidays")
+				// .permitAll()
+				// .antMatchers("/holidays/**/addedCountries")
+				// .permitAll()
+				// .antMatchers("/holidays/**/addingCountries")
+				// .permitAll()
+				// .antMatchers("/holidays/**")
+				// .permitAll()
+				// .antMatchers("/countries")
+				// .permitAll()
+				// .antMatchers("/countries/**")
+				// .permitAll()
+				// .antMatchers("/api/user/checkUsernameAvailability",
+				// "/api/user/checkEmailAvailability")
+				// .permitAll()
+				// .antMatchers(HttpMethod.GET, "/holidays/**", "/api/users/**")
+				// .permitAll()
+				// .anyRequest()
                         //.authenticated(); //originale buvo taip, o as pridejau kita eilute 
-                    .permitAll()
+				// .permitAll()
                     .and()
                     	.headers().frameOptions().disable();
         
