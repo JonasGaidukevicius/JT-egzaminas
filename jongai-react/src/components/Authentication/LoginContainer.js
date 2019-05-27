@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import Login from "./Login";
+import LoginComponent from "./LoginComponent";
 
 export default class LoginContainer extends Component {
   constructor(props) {
@@ -68,7 +68,7 @@ export default class LoginContainer extends Component {
 
   render() {
     return (
-      <Login
+      <LoginComponent
         error={this.state.errorMessage}
         wrongUsernameOrPassword={this.state.wrongUsernameOrPassword}
         username={this.state.username}

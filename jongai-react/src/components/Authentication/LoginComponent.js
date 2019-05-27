@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login = ({
+const LoginComponent = ({
   username,
   password,
   onUsernameChange,
@@ -78,4 +78,4 @@ const Login = ({
     </React.Fragment>
   );
 };
-export default Login;
+export default LoginComponent;
