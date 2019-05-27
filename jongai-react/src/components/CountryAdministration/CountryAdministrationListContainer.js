@@ -14,9 +14,9 @@ class CountryAdministrationListContainer extends React.Component {
     }
 
     handleDelete = (countryCode) => {
-        axios.delete('http://localhost:8080/countries/' + (countryCode))
+        axios.delete('http://localhost:8080/api/countries/' + (countryCode))
           .then(response => {
-            axios.get('http://localhost:8080/countries')
+            axios.get('http://localhost:8080/api/countries')
             .then((response) => {
                 this.setState({ countries: response.data });
             })
@@ -30,7 +30,7 @@ class CountryAdministrationListContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/countries')
+        axios.get('http://localhost:8080/api/countries')
             .then((response) => {
                 this.setState({ countries: response.data });
                 //console.log(response.data);

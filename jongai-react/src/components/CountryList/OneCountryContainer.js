@@ -22,7 +22,7 @@ class OneCountryContainer extends React.Component {
 
   getOneCountry() {
     const position = this.props.match.params.countryCode;
-    axios.get('http://localhost:8080/countries/' + (position))
+    axios.get('http://localhost:8080/api/countries/' + (position))
       .then((response) => {
         this.setState({
           countryCode: response.data.countryCode,
@@ -38,7 +38,7 @@ class OneCountryContainer extends React.Component {
 
   getCountryHolidayList() {
     const position = this.props.match.params.countryCode;
-    axios.get('http://localhost:8080/countries/' + position + '/addedHolidays')
+    axios.get('http://localhost:8080/api/countries/' + position + '/addedHolidays')
       .then((response) => {
         this.setState({ addedHolidays: response.data })
       })
@@ -101,7 +101,7 @@ class OneCountryContainer extends React.Component {
   //nenaudojamas
   addCountriesToHoliday = event => {
     const position = this.props.match.params.code;
-    axios.put('http://localhost:8080/holidays/' + position + '/addingCountries', this.state.countriesToAdd)
+    axios.put('http://localhost:8080/api/holidays/' + position + '/addingCountries', this.state.countriesToAdd)
       .then(() => this.getHolidayCountryList())
       .catch(function (error) {
         console.log(error);
@@ -111,7 +111,7 @@ class OneCountryContainer extends React.Component {
   //nenaudojamas
   removeCountriesFromHoliday = event => {
     const position = this.props.match.params.code;
-    axios.put('http://localhost:8080/holidays/' + position + '/removingCountries', this.state.countriesToRemove)
+    axios.put('http://localhost:8080/api/holidays/' + position + '/removingCountries', this.state.countriesToRemove)
       .then(() => this.getHolidayCountryList())
       .catch(function (error) {
         console.log(error);

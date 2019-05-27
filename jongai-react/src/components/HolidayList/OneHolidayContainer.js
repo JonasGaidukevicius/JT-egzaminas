@@ -52,7 +52,7 @@ class OneHolidayContainer extends React.Component {
 
   getOneHoliday() {
     const position = this.props.match.params.code;
-    axios.get('http://localhost:8080/holidays/' + (position))
+    axios.get('http://localhost:8080/api/holidays/' + (position))
       .then((response) => {
         //this.setState(response.data);
         console.log("-----------------Response data id yra: " + response.data.id);
@@ -74,7 +74,7 @@ class OneHolidayContainer extends React.Component {
 
   getHolidayCountryList() {
     const position = this.props.match.params.code;
-    axios.get('http://localhost:8080/holidays/' + position + '/addedCountries')
+    axios.get('http://localhost:8080/api/holidays/' + position + '/addedCountries')
       .then((response) => {
         this.setState({ addedCountries: response.data })
       })
@@ -84,7 +84,7 @@ class OneHolidayContainer extends React.Component {
   }
 
   getCountryList() {
-    axios.get('http://localhost:8080/countries')
+    axios.get('http://localhost:8080/api/countries')
       .then((response) => {
         this.setState({ allCountries: response.data.map(item => item.title) })
       })
@@ -143,7 +143,7 @@ class OneHolidayContainer extends React.Component {
 
   addCountriesToHoliday = event => {
     const position = this.props.match.params.code;
-    axios.put('http://localhost:8080/holidays/' + position + '/addingCountries', this.state.countriesToAdd)
+    axios.put('http://localhost:8080/api/holidays/' + position + '/addingCountries', this.state.countriesToAdd)
       .then(() => this.getHolidayCountryList())
       .catch(function (error) {
         console.log(error);
@@ -152,7 +152,7 @@ class OneHolidayContainer extends React.Component {
 
   removeCountriesFromHoliday = event => {
     const position = this.props.match.params.code;
-    axios.put('http://localhost:8080/holidays/' + position + '/removingCountries', this.state.countriesToRemove)
+    axios.put('http://localhost:8080/api/holidays/' + position + '/removingCountries', this.state.countriesToRemove)
       .then(() => this.getHolidayCountryList())
       .catch(function (error) {
         console.log(error);

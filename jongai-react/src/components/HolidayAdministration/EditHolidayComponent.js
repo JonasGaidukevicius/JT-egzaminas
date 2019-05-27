@@ -55,7 +55,7 @@ const EditHolidayComponet = (props) => {
                 </div>
                 <button className="btn btn-primary" type="submit" onClick={props.handleSubmit}>Save</button>&nbsp;
                 <button className="btn btn-primary" onClick={props.handleDelete}>Delete</button>&nbsp;
-                <Link to={`/admin`} className="btn btn-dark">Cancel</Link>
+                <Link to={`/admin/holidays`} className="btn btn-dark">Cancel</Link>
                 {/* perdaryti pagal sita
             <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={this.props.onSaveClick}>Save</button>
             */}

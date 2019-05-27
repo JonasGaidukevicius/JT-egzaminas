@@ -28,8 +28,8 @@ class NewCountryContainer extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    axios.post('http://localhost:8080/countries', this.state)
-      .then(response => this.props.history.push(`/admin/country`)) //reikia nurodyti kelią, kur turėtų atsirasti
+    axios.post('http://localhost:8080/api/countries', this.state)
+      .then(response => this.props.history.push(`/admin/countries`)) //reikia nurodyti kelią, kur turėtų atsirasti
       .catch(error => {
         console.log(error);
       });

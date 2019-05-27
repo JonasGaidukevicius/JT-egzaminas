@@ -45,12 +45,12 @@ class NavigationContainer extends React.Component {
                         )}
                         exact
                         />
-                        <Route path="/admin" render={props => (
+                        <Route path="/admin/holidays" render={props => (
                             <HolidayAdministrationListContainer {...props} />
                         )}
                         exact
                         />
-                         <Route path="/admin/country" render={props => (
+                         <Route path="/admin/countries" render={props => (
                             <CountryAdministrationContainer {...props} />
                         )}
                         exact

@@ -22,7 +22,7 @@ class EditHolidayContainer extends React.Component {
     const position = this.props.match.params.code;
     console.log("Gaunu tokį position - " + position);
 
-    axios.get('http://localhost:8080/holidays/' + (position))
+    axios.get('http://localhost:8080/api/holidays/' + (position))
       .then((response) => {
         //this.setState(response.data);
         console.log("Gavau tokį produktą į redagavimą");
@@ -69,9 +69,9 @@ class EditHolidayContainer extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     //const position = this.props.match.params.id;
-    axios.put('http://localhost:8080/holidays/' + (this.state.code), this.state)
+    axios.put('http://localhost:8080/api/holidays/' + (this.state.code), this.state)
 
-      .then(response => this.props.history.push(`/admin`))
+      .then(response => this.props.history.push(`/admin/holidays`))
       .catch(function (error) {
         console.log(error);
       });
@@ -81,8 +81,8 @@ class EditHolidayContainer extends React.Component {
   handleDelete = (event) => {
     event.preventDefault();
     console.log("Noriu ištrinti " + this.state.code);
-    axios.delete('http://localhost:8080/holidays/' + (this.state.code))
-      .then(response => this.props.history.push(`/admin`))
+    axios.delete('http://localhost:8080/api/holidays/' + (this.state.code))
+      .then(response => this.props.history.push(`/admin/holidays`))
       .catch(function (error) {
         console.log(error);
       });

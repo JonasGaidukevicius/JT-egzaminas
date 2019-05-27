@@ -15,11 +15,11 @@ class HolidayAdministrationListContainer extends React.Component {
 
     handleDelete = (code) => {
         console.log("Noriu ištrinti " + code);
-        axios.delete('http://localhost:8080/holidays/' + (code))
+        axios.delete('http://localhost:8080/api/holidays/' + (code))
           .then(response => {
-            axios.get('http://localhost:8080/holidays')
+            axios.get('http://localhost:8080/api/holidays')
             .then((response) => {
-                this.setState({ holidays: response.data });
+                this.setState({ holidaysList: response.data });
             })
             .catch((error) => {
                 console.log(error);
@@ -31,7 +31,7 @@ class HolidayAdministrationListContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/holidays')
+        axios.get('http://localhost:8080/api/holidays')
             .then((response) => {
                 this.setState({ holidaysList: response.data });
                 //console.log(response.data);
