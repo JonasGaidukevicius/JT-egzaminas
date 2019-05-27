@@ -11,7 +11,7 @@ class NewUserContainer extends React.Component {
       username: '',
       email: '',
       password: '',
-      role: false
+      role: 'ROLE_USER'
     };
     //var fromMenu;
   }
@@ -40,7 +40,7 @@ class NewUserContainer extends React.Component {
     event.preventDefault();
     console.log(this.state);
     axios.post('http://localhost:8080/api/auth/signup', this.state)
-      .then(response => this.props.history.push(`/admin`)) //reikia nurodyti kelią, kur turėtų atsirasti
+      .then(response => this.props.history.push(`/admin/holidays`)) //reikia nurodyti kelią, kur turėtų atsirasti
       .catch(function (error) {
         console.log(error);
       });

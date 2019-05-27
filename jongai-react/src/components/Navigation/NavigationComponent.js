@@ -10,10 +10,10 @@ var NavigationComponent = (props) => {
                         <Link to='/' className="btn btn-success">Home</Link> &nbsp;
                     </li>
                     <li className="nav-item">
-                        <Link to='/admin' className="btn btn-success">Holiday administration</Link> &nbsp;
+                        <Link to='/admin/holidays' className="btn btn-success">Holiday administration</Link> &nbsp;
                     </li>
                     <li className="nav-item">
-                        <Link to='/admin/country' className="btn btn-success">Country administration</Link> &nbsp;
+                        <Link to='/admin/countries' className="btn btn-success">Country administration</Link> &nbsp;
                     </li>
                     {/* Login mygtukas yra nereikalingas
                     <li className="nav-item">

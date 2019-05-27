@@ -24,7 +24,7 @@ import lt.sventes.holidays.service.HolidayService;
 
 @RestController
 @Api(value = "holiday")
-@RequestMapping(value = "/holidays")
+@RequestMapping(value = "/api/holidays")
 public class HolidayController {
 
 	private final HolidayService holidayService;

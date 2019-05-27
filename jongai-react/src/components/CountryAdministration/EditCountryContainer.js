@@ -19,7 +19,7 @@ class EditCountryContainer extends React.Component {
   componentDidMount() {
     const position = this.props.match.params.countryCode;
 
-    axios.get('http://localhost:8080/countries/' + (position))
+    axios.get('http://localhost:8080/api/countries/' + (position))
       .then(response => {
         this.setState({ countryCode: response.data.countryCode});
         this.setState({ oldTitle: response.data.title });
@@ -47,9 +47,9 @@ class EditCountryContainer extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    axios.put('http://localhost:8080/countries/' + (this.state.countryCode), this.state)
+    axios.put('http://localhost:8080/api/countries/' + (this.state.countryCode), this.state)
 
-      .then(response => this.props.history.push(`/admin/country`))
+      .then(response => this.props.history.push(`/admin/countries`))
       .catch(error => {
         console.log(error);
       });
@@ -58,8 +58,8 @@ class EditCountryContainer extends React.Component {
 
   handleDelete = event => {
     event.preventDefault();
-    axios.delete('http://localhost:8080/countries/' + (this.state.countryCode))
-      .then(() => this.props.history.push(`/admin/country`))
+    axios.delete('http://localhost:8080/api/countries/' + (this.state.countryCode))
+      .then(() => this.props.history.push(`/admin/countries`))
       .catch(error => {
         console.log(error);
       });

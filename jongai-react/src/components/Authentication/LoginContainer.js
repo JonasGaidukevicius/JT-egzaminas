@@ -46,7 +46,7 @@ export default class LoginContainer extends Component {
         Axios.defaults.headers.Authorization = `Bearer ${JSON.parse(
           sessionStorage.getItem("accessToken")
         )}`;
-        Axios.get("http://localhost:8080/users/me")
+        Axios.get("http://localhost:8080/api/users/me")
           .then(ress => {
             sessionStorage.setItem("user", JSON.stringify(ress.data));
             this.props.setLoggedState();

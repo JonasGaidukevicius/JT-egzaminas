@@ -21,7 +21,7 @@ import lt.sventes.countries.service.CountryService;
 
 @RestController
 @Api(value = "country")
-@RequestMapping(value = "/countries")
+@RequestMapping(value = "/api/countries")
 public class CountryController {
 
 	private final CountryService countryService;

@@ -21,7 +21,7 @@ import lt.sventes.users.service.UserService;
 
 @RestController
 @Api(value = "user")
-@RequestMapping(value = "/users")
+@RequestMapping(value = "api/users")
 public class UserController {
 
 	private final UserService userService;;

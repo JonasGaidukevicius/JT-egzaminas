@@ -32,7 +32,7 @@ const OneCountryComponent = (props) => {
                         <p>{props.president}</p>
                     </div>
                     <div className="row">
-                        <Link to={`/admin/country`} className="btn btn-dark mt-3">Back</Link>
+                        <Link to={`/admin/countries`} className="btn btn-dark mt-3">Back</Link>
                     </div>
                 </div>
                 <div className="col-md-3 col-lg-3">
