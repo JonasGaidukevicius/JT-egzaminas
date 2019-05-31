@@ -62,7 +62,7 @@ public class HolidayService {
 		code += "_" + modifiedTitle;
 		Holiday newHoliday = new Holiday(code, title, description, image, type, flag, countries);
 		holidayRepository.save(newHoliday);
-		log.info("Sukurta šventė " + title);
+		log.info("A new holiday (" + title + ") has been deleted");
 	}
 
 	// Esamos šventės duomenų pakeitimas
@@ -77,15 +77,16 @@ public class HolidayService {
 		holidayToUpdate.setType(type);
 		holidayToUpdate.setFlag(flag);
 		holidayRepository.save(holidayToUpdate);
-		log.info("Atnaujinta šventė " + title);
+		log.info("Holiday (" + title + ") has been updated");
 	}
 
 	// Esamos šventės ištrynimas (metodas aprašytas Repositorijoje)
 	@Transactional
 	public void deleteHoliday(String code) {
 		//holidayRepository.deleteHolidayByTitle(title);
+		Holiday holidayToDelete = holidayRepository.findHolidayByCode(code);
 		holidayRepository.deleteHolidayByCode(code);
-		log.info("Ištrinta šventė " + code);
+		log.info("Holiday (" + holidayToDelete.getTitle() + ") has been created");
 	}
 
 	// Vienos šventės šalių nuskaitymas
@@ -109,6 +110,8 @@ public class HolidayService {
 			if (!alreadyAddedCountryStringList.contains(country)) {
 				Country countryToAdd = countryRepository.findCountryByTitle(country);
 				currentHoliday.addCountry(countryToAdd);
+				log.info("Country (" + countryToAdd.getTitle() + ") was added to holiday (" + currentHoliday.getTitle()
+						+ ")");
 			}
 		}
 		holidayRepository.save(currentHoliday);
@@ -121,15 +124,15 @@ public class HolidayService {
 
 		//Holiday currentHoliday = holidayRepository.findHolidayByTitle(title);
 		Holiday currentHoliday = holidayRepository.findHolidayByCode(code);
-		
-		
 		List<Country> alreadyAddedCountryList = currentHoliday.getCountries();
 		List<String> alreadyAddedCountryStringList = alreadyAddedCountryList.stream()
 				.map((country) -> country.getTitle()).collect(Collectors.toList());
 		for (String country : countryList) {
 			if (alreadyAddedCountryStringList.contains(country)) {
-				Country countryToRomove = countryRepository.findCountryByTitle(country);
-				currentHoliday.removeCountry(countryToRomove);
+				Country countryToRemove = countryRepository.findCountryByTitle(country);
+				currentHoliday.removeCountry(countryToRemove);
+				log.info("Country (" + countryToRemove.getTitle() + ") was removed from holiday ("
+						+ currentHoliday.getTitle() + ")");
 			}
 		}
 		holidayRepository.save(currentHoliday);

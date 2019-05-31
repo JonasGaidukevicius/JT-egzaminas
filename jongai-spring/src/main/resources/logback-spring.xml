@@ -47,6 +47,11 @@
         <appender-ref ref="LOGFILE" />
         <appender-ref ref="STDOUT" />
     </logger>
+    
+    <logger name="${BASEPCKG}.countries.service.CountryService" level="info" additivity="false">
+        <appender-ref ref="LOGFILE" />
+        <appender-ref ref="STDOUT" />
+    </logger>
 
  
 </configuration>

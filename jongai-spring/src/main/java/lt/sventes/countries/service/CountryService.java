@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.extern.slf4j.Slf4j;
 import lt.sventes.countries.model.Country;
 import lt.sventes.countries.model.CountryData;
-import lt.sventes.holidays.model.Holiday;
-import lt.sventes.holidays.model.HolidayData;
 
 @Service
+@Slf4j
 public class CountryService {
 
 	@Autowired
@@ -42,6 +42,7 @@ public class CountryService {
 		String countryCode = RandomStringUtils.random(7, true, true) + "_" + title.replaceAll("\\s+", "");
 		Country newCountry = new Country(countryCode, title, image, president);
 		countryRepository.save(newCountry);
+		log.info("A new country (" + title + ") has been created");
 	}
 
 	// Esamos šalies duomenų pakeitimas
@@ -53,13 +54,16 @@ public class CountryService {
 		countryToUpdate.setImage(image);
 		countryToUpdate.setPresident(president);
 		countryRepository.save(countryToUpdate);
+		log.info("Country (" + title + ") has been updated");
 	}
 
 	// Esamos šalies ištrynimas (metodas aprašytas Repositorijoje)
 	@Transactional
 	public void deleteCountry(String countryCode) {
+		Country countryToDelete = countryRepository.findCountryByCountryCode(countryCode);
 		countryRepository.deleteCountryByCountryCode(countryCode);
-		//countryRepository.deleteCountryByTitle(countryCode);
+		log.info("Country (" + countryToDelete.getTitle() + ") has been deleted");
+
 	}
 	
 	// Vienos šalies švenčių nuskaitymas
