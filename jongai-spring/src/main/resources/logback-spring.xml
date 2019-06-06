@@ -52,6 +52,16 @@
         <appender-ref ref="LOGFILE" />
         <appender-ref ref="STDOUT" />
     </logger>
+    
+    <logger name="${BASEPCKG}.security.controller.AuthController" level="info" additivity="false">
+        <appender-ref ref="LOGFILE" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+    
+    <logger name="${BASEPCKG}.CommandLineAppStartupRunner" level="info" additivity="false">
+        <appender-ref ref="LOGFILE" />
+        <appender-ref ref="STDOUT" />
+    </logger>
 
  
 </configuration>

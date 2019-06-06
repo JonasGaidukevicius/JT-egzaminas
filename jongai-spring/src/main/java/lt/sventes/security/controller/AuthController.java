@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import lombok.extern.slf4j.Slf4j;
 import lt.sventes.roles.service.RoleRepository;
 import lt.sventes.security.exception.AppException;
 import lt.sventes.security.payload.ApiResponse;
@@ -31,6 +32,7 @@ import lt.sventes.users.models.RoleName;
 import lt.sventes.users.models.User;
 import lt.sventes.users.service.UserRepository;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -95,6 +97,7 @@ public class AuthController {
         user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
+		log.info("New user (" + user.getUsername() + ") has been created");
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
