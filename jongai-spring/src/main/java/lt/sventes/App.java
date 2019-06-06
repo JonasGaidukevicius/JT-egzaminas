@@ -27,8 +27,6 @@ public class App extends SpringBootServletInitializer {
 		TimeZone.setDefault(TimeZone.getTimeZone("CET"));
 	}
 	
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
