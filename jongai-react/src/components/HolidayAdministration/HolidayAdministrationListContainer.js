@@ -8,8 +8,7 @@ class HolidayAdministrationListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            holidaysList: '',
-            loading: 'Loading holidays. Please wait...'
+            holidaysList: ''
         };
     }
 
@@ -110,7 +109,13 @@ class HolidayAdministrationListContainer extends React.Component {
                 // </div>
             );
         }
-        return this.state.loading;
+        return (
+            <div class="text-center">
+                <div class="spinner-border text-danger" role="status">
+                    <span class="sr-only">Loading data...</span>
+                </div>
+            </div>        
+        );
     }
 }
 

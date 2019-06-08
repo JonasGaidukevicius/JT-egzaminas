@@ -2,6 +2,7 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import HolidayCardComponent from './HolidayCardComponent';
 import axios from 'axios';
+import '../../index.css';
 
 class HolidayListContainer extends React.Component {
     constructor(props) {
@@ -41,11 +42,17 @@ class HolidayListContainer extends React.Component {
             });
             return (
                 <div className="container">
-                    <div className="row">{holidayCards}</div>
+                    <div className="row" >{holidayCards}</div>
                 </div>
             );
         }
-        return this.state.loading;
+        return (
+            <div class="text-center">
+                <div class="spinner-border text-danger" role="status">
+                    <span class="sr-only">Loading data...</span>
+                </div>
+            </div>        
+        );
     }
 }
 

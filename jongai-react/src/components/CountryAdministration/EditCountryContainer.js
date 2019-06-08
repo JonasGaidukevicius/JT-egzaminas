@@ -68,21 +68,31 @@ class EditCountryContainer extends React.Component {
   render() {
     this.fromMenu = "Atnaujinama Šalis:";
 
-    return (
-      <EditCountryComponent
-        currentCountryCode={this.state.countryCode}
-        currentTitle={this.state.title}
-        currentImage={this.state.image}
-        currentPresident={this.state.president}
-        handleChangeOfTitle={this.handleChangeOfTitle}
-        handleChangeOfImage={this.handleChangeOfImage}
-        handleChangeOfPresident={this.handleChangeOfPresident}
-        handleSubmit={this.handleSubmit}
-        handleDelete={this.handleDelete}
-        fromMenu={this.fromMenu}
+    if (this.state.countryCode) {
+      return (
+        <EditCountryComponent
+          currentCountryCode={this.state.countryCode}
+          currentTitle={this.state.title}
+          currentImage={this.state.image}
+          currentPresident={this.state.president}
+          handleChangeOfTitle={this.handleChangeOfTitle}
+          handleChangeOfImage={this.handleChangeOfImage}
+          handleChangeOfPresident={this.handleChangeOfPresident}
+          handleSubmit={this.handleSubmit}
+          handleDelete={this.handleDelete}
+          fromMenu={this.fromMenu}
 
-      />
-    );
+        />
+      );
+    } else {
+      return (
+        <div class="text-center">
+            <div class="spinner-border text-danger" role="status">
+                <span class="sr-only">Loading data...</span>
+            </div>
+        </div>        
+      );
+    } 
   }
 }
 

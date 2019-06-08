@@ -90,26 +90,34 @@ class EditHolidayContainer extends React.Component {
 
   render() {
     this.fromMenu = "Atnaujinama Šventė:";
-
-    return (
-      <EditHolidayComponent
-        currentCode={this.state.code}
-        currentTitle={this.state.title}
-        currentImage={this.state.image}
-        currentDescription={this.state.description}
-        currentType={this.state.type}
-        currentFlag={this.state.flag}
-        handleChangeOfTitle={this.handleChangeOfTitle}
-        handleChangeOfImage={this.handleChangeOfImage}
-        handleChangeOfDescription={this.handleChangeOfDescription}
-        handleChangeOfType={this.handleChangeOfType}
-        handleChangeOfFlag={this.handleChangeOfFlag}
-        handleSubmit={this.handleSubmit}
-        handleDelete={this.handleDelete}
-        fromMenu={this.fromMenu}
-
-      />
-    );
+    if (this.state.code) {
+      return (
+        <EditHolidayComponent
+          currentCode={this.state.code}
+          currentTitle={this.state.title}
+          currentImage={this.state.image}
+          currentDescription={this.state.description}
+          currentType={this.state.type}
+          currentFlag={this.state.flag}
+          handleChangeOfTitle={this.handleChangeOfTitle}
+          handleChangeOfImage={this.handleChangeOfImage}
+          handleChangeOfDescription={this.handleChangeOfDescription}
+          handleChangeOfType={this.handleChangeOfType}
+          handleChangeOfFlag={this.handleChangeOfFlag}
+          handleSubmit={this.handleSubmit}
+          handleDelete={this.handleDelete}
+          fromMenu={this.fromMenu}
+        />
+      );
+      } else {
+        return (
+          <div class="text-center">
+              <div class="spinner-border text-danger" role="status">
+                  <span class="sr-only">Loading data...</span>
+              </div>
+          </div>        
+        );
+      }
   }
 }
 

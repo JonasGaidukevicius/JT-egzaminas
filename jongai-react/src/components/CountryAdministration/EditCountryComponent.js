@@ -30,7 +30,7 @@ const EditCountryComponet = (props) => {
                 </div>
                 <button className="btn btn-primary" type="submit" onClick={props.handleSubmit}>Save</button>&nbsp;
                 <button className="btn btn-primary" onClick={props.handleDelete}>Delete</button>&nbsp;
-                <Link to={`/admin/country`} className="btn btn-dark">Cancel</Link>
+                <Link to={`/admin/countries`} className="btn btn-dark">Cancel</Link>
             </form>
         </div>
     );
