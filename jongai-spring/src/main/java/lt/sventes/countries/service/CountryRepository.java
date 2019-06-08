@@ -12,11 +12,5 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
 	//Šitas metodas naudojamas, kad surasti šalį pagal pavadinimą,
 	//kai vartotojas iš galimų šalių renkasi, kokias šalis priskirti šventei
 	Country findCountryByTitle(String title);
-	
-	
-	
-	//Nenaudojamas
-	void deleteCountryByTitle(String title);
-	
-	
+	boolean existsByTitle(String title);
 }

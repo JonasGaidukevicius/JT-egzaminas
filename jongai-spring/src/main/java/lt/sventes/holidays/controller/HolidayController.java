@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,9 +58,10 @@ public class HolidayController {
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create new holiday", notes = "Creates new holiday with provided data")
-	public void createHoliday(
+	public ResponseEntity<?> createHoliday(
 			@ApiParam(value = "Holiday data", required = true) @Valid @RequestBody final CreateHolidayCommand chc) {
-			holidayService.createHoliday(chc.getTitle(), chc.getDescription(), chc.getImage(), chc.getType(), chc.isFlag(), new ArrayList<Country>());
+		return holidayService.createHoliday(chc.getTitle(), chc.getDescription(), chc.getImage(), chc.getType(),
+				chc.isFlag(), new ArrayList<Country>());
 	}
 
 	// šventės atnaujinimas

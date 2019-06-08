@@ -42,6 +42,7 @@ class NewUserContainer extends React.Component {
     axios.post('http://localhost:8080/api/auth/signup', this.state)
       .then(response => this.props.history.push(`/admin/holidays`)) //reikia nurodyti kelią, kur turėtų atsirasti
       .catch(function (error) {
+        alert(error.response.data.message);
         console.log(error);
       });
   }

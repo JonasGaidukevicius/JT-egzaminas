@@ -44,9 +44,13 @@ class NewHolidayContainer extends React.Component {
     event.preventDefault();
     console.log(this.state);
     axios.post('http://localhost:8080/api/holidays', this.state)
-      .then(response => this.props.history.push(`/admin/holidays`)) //reikia nurodyti kelią, kur turėtų atsirasti
-      .catch(function (error) {
-        console.log(error);
+      .then(response => {
+              console.log(response);
+              this.props.history.push(`/admin/holidays`)}) //reikia nurodyti kelią, kur turėtų atsirasti
+      .catch((error, response) => {
+        console.log(response);
+        console.log(error.response.data.message);
+        alert(error.response.data.message);
       });
   }
 
