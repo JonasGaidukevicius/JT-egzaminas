@@ -9,4 +9,6 @@ public interface HolidayRepository extends JpaRepository<Holiday, Long> {
 	Holiday findHolidayByCode(String code);
 	void deleteHolidayByCode(String code);
 
+	boolean existsByTitle(String title);
+
 }

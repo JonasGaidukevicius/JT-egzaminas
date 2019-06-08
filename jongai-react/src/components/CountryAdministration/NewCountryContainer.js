@@ -31,6 +31,7 @@ class NewCountryContainer extends React.Component {
     axios.post('http://localhost:8080/api/countries', this.state)
       .then(response => this.props.history.push(`/admin/countries`)) //reikia nurodyti kelią, kur turėtų atsirasti
       .catch(error => {
+        alert(error.response.data.message);
         console.log(error);
       });
   }

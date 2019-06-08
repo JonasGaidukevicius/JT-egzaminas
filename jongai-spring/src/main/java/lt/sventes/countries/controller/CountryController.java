@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,10 +54,10 @@ public class CountryController {
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create new country", notes = "Creates new country with provided data")
-	public void createCountry(
+	public ResponseEntity<?> createCountry(
 			@ApiParam(value = "Country data", required = true) @Valid @RequestBody final CreateCountryCommand ccc) {
 
-		countryService.createCountry(ccc.getTitle(), ccc.getImage(), ccc.getPresident());
+		return countryService.createCountry(ccc.getTitle(), ccc.getImage(), ccc.getPresident());
 	}
 
 	// šalies atnaujinimas

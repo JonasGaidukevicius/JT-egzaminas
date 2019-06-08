@@ -1,16 +1,21 @@
 package lt.sventes.countries.service;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import lombok.extern.slf4j.Slf4j;
 import lt.sventes.countries.model.Country;
 import lt.sventes.countries.model.CountryData;
+import lt.sventes.security.payload.ApiResponse;
 
 @Service
 @Slf4j
@@ -37,12 +42,21 @@ public class CountryService {
 
 	// Naujos šalies sukūrimas
 	@Transactional
-	public void createCountry(String title, String image, String president) {
+	public ResponseEntity<?> createCountry(String title, String image, String president) {
+		// Patikrinu ar tokiu pavadinimu šalis jau egzistuoja
+		if (countryRepository.existsByTitle(title)) {
+			return new ResponseEntity<>(new ApiResponse(false, "Country with such title already exists"),
+					HttpStatus.BAD_REQUEST);
+		}
+
 		// 1.Sugeneruoju atsitiktinę eilutę iš 7 simbolių
 		String countryCode = RandomStringUtils.random(7, true, true) + "_" + title.replaceAll("\\s+", "");
 		Country newCountry = new Country(countryCode, title, image, president);
-		countryRepository.save(newCountry);
+		Country result = countryRepository.save(newCountry);
 		log.info("A new country (" + title + ") has been created");
+		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/countries/{countryCode}")
+				.buildAndExpand(result.getCountryCode()).toUri();
+		return ResponseEntity.created(location).body(new ApiResponse(true, "Country created successfully"));
 	}
 
 	// Esamos šalies duomenų pakeitimas
@@ -63,7 +77,6 @@ public class CountryService {
 		Country countryToDelete = countryRepository.findCountryByCountryCode(countryCode);
 		countryRepository.deleteCountryByCountryCode(countryCode);
 		log.info("Country (" + countryToDelete.getTitle() + ") has been deleted");
-
 	}
 	
 	// Vienos šalies švenčių nuskaitymas

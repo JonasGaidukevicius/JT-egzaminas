@@ -12,3 +12,7 @@
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+
+.btn {
+  margin: 2px
+}
