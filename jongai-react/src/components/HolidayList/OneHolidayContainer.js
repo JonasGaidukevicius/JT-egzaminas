@@ -17,9 +17,7 @@ class OneHolidayContainer extends React.Component {
       allCountries: [],
       countriesToAdd: [],
       countriesToRemove: []
-    };
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! užkomentavau, nes man atrodo, kad čia aš eksperimentavau
-    //this.userName = this.context;  
+    }; 
   }
 
   //  handleAddToCart = (userName) => {      
@@ -39,15 +37,10 @@ class OneHolidayContainer extends React.Component {
   //     console.log(this.state.quantity);
   //   }
 
-
-
   componentDidMount() {
     this.getOneHoliday();
     this.getHolidayCountryList();
     this.getCountryList();
-
-
-
   }
 
   getOneHoliday() {
@@ -160,32 +153,35 @@ class OneHolidayContainer extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <OneHolidayComponent
-          code={this.state.code}
-          title={this.state.title}
-          image={this.state.image}
-          description={this.state.description}
-          type={this.state.type}
-          flag={this.state.flag === true ? "Yes" : "No"}
-          addedCountries={this.state.addedCountries}
-          allCountries={this.state.allCountries}
-          showAvailableCountries={this.showAvailableCountries}
-          availableCountrySelectionHandler={this.availableCountrySelectionHandler}
-          addCountriesToHoliday={this.addCountriesToHoliday}
-          removeCountriesFromHoliday={this.removeCountriesFromHoliday}
-          countryRemovingHandler={this.countryRemovingHandler}
-        />
-        {/* <UserContext.Consumer>
-                {
-                    (userNameObject) => {
-                       return <AddToCartComponent userName={userNameObject.user} handleAddToCart={this.handleAddToCart} handleChangeOfQuantity={this.handleChangeOfQuantity}/>
-                    }
-                } 
-                </UserContext.Consumer>  */}
-      </div>
-    );
+    if (this.state.code) {
+      return (
+        <div>
+          <OneHolidayComponent
+            code={this.state.code}
+            title={this.state.title}
+            image={this.state.image}
+            description={this.state.description}
+            type={this.state.type}
+            flag={this.state.flag === true ? "Yes" : "No"}
+            addedCountries={this.state.addedCountries}
+            allCountries={this.state.allCountries}
+            showAvailableCountries={this.showAvailableCountries}
+            availableCountrySelectionHandler={this.availableCountrySelectionHandler}
+            addCountriesToHoliday={this.addCountriesToHoliday}
+            removeCountriesFromHoliday={this.removeCountriesFromHoliday}
+            countryRemovingHandler={this.countryRemovingHandler}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div class="text-center">
+            <div class="spinner-border text-danger" role="status">
+                <span class="sr-only">Loading data...</span>
+            </div>
+        </div>        
+      );
+    } 
   }
 }
 

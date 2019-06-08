@@ -119,24 +119,27 @@ class OneCountryContainer extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <OneCountryComponent
-          countryCode={this.state.countryCode}
-          title={this.state.title}
-          image={this.state.image}
-          president={this.state.president}
-          addedHolidays={this.state.addedHolidays}
-        />
-        {/* <UserContext.Consumer>
-                {
-                    (userNameObject) => {
-                       return <AddToCartComponent userName={userNameObject.user} handleAddToCart={this.handleAddToCart} handleChangeOfQuantity={this.handleChangeOfQuantity}/>
-                    }
-                } 
-                </UserContext.Consumer>  */}
-      </div>
-    );
+    if (this.state.countryCode) {
+      return (
+        <div>
+          <OneCountryComponent
+            countryCode={this.state.countryCode}
+            title={this.state.title}
+            image={this.state.image}
+            president={this.state.president}
+            addedHolidays={this.state.addedHolidays}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div class="text-center">
+            <div class="spinner-border text-danger" role="status">
+                <span class="sr-only">Loading data...</span>
+            </div>
+        </div>        
+      );
+    } 
   }
 }
 

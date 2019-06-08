@@ -8,8 +8,7 @@ class CountryAdministrationListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contries: '',
-            loading: 'Loading countries. Please wait...'
+            contries: ''
         };
     }
 
@@ -86,7 +85,13 @@ class CountryAdministrationListContainer extends React.Component {
                 </div>
             );
         }
-        return this.state.loading;
+        return (
+            <div class="text-center">
+                <div class="spinner-border text-danger" role="status">
+                    <span class="sr-only">Loading data...</span>
+                </div>
+            </div>        
+        );
     }
 }
 

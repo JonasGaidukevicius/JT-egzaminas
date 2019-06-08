@@ -5,7 +5,7 @@ var NavigationComponent = (props) => {
     return (
         <div>
             <div className="container my-3">
-                <ul className="nav nav-pills">
+                <ul className="nav nav-pills justify-content-center">
                     <li className="nav-item">
                         <Link to='/' className="btn btn-success">Home</Link> &nbsp;
                     </li>

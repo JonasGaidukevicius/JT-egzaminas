@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom';
 const HolidayCardComponent = (props) => {
     var linkas = "/holidays/" + props.code;
     return (
-        <div className="card p-3 m-1" style={{ width: "18rem" }}>
+        <div className="card p-3 m-1" style={{ width: "16rem" }}>
             <img className="card-img-top" src={"/img/holidays/" + props.image} alt="Holiday_picture"></img>
             <div className="card-body">
                 <h5 className="card-title">{props.title}</h5>
