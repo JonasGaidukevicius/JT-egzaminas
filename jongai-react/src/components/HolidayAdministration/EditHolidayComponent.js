@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const EditHolidayComponet = (props) => {
 
     return (
-        <div className="container">
+        <div className="container main-data">
             <form onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <div className="col-md-12 col-lg-10 mb-3">
-                        <p>{props.fromMenu}</p>
+                        <h5>{props.fromMenu}</h5>
                     </div>
                 </div>
                 <div className="form-row">
@@ -47,7 +47,7 @@ const EditHolidayComponet = (props) => {
                             {optionList} */}
                         </select>
                     </div>
-                    <div className="col-md-1 col-lg-1 mb-3">
+                    <div className="col-md-3 col-lg-3 mb-3">
                         <label className="form-check-label" htmlFor="flag">
                             <input className="form-check-input" type="checkbox" id="flag" checked={props.currentFlag} onChange={props.handleChangeOfFlag}></input>
                             Flag rising</label>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const EditCountryComponet = (props) => {
 
     return (
-        <div className="container main-data">
+        <div className="container">
             <form onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <div className="col-md-12 col-lg-10 mb-3">

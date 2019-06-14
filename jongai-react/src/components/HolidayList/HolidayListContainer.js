@@ -41,15 +41,15 @@ class HolidayListContainer extends React.Component {
                 );
             });
             return (
-                <div className="container">
+                <div className="container main-data">
                     <div className="row" >{holidayCards}</div>
                 </div>
             );
         }
         return (
-            <div class="text-center">
-                <div class="spinner-border text-danger" role="status">
-                    <span class="sr-only">Loading data...</span>
+            <div className="text-center">
+                <div className="spinner-border text-danger" role="status">
+                    <span className="sr-only">Loading data...</span>
                 </div>
             </div>        
         );

@@ -8,7 +8,7 @@ const NewUserComponet = props => {
     //     <option key={v}>{v}</option>
     //   ));
     return (
-        <div className="container">
+        <div className="container main-data">
             <form onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <div className="col-md-4 col-lg-4 mb-3">

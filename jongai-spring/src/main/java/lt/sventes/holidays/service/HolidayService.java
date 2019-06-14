@@ -74,7 +74,7 @@ public class HolidayService {
 		code += "_" + modifiedTitle;
 		Holiday newHoliday = new Holiday(code, title, description, image, type, flag, countries);
 		Holiday result = holidayRepository.save(newHoliday);
-		log.info("A new holiday (" + title + ") has been deleted");
+		log.info("A new holiday (" + title + ") has been created");
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/holidays/{code}")
 				.buildAndExpand(result.getCode()).toUri();
 		return ResponseEntity.created(location).body(new ApiResponse(true, "Holiday created successfully"));

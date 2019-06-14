@@ -1,23 +1,24 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-import CountryAdministrationLineComponent from './CountryAdministrationLineComponent';
+import CartAdministrationLineComponent from './CartAdministrationLineComponent';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-class CountryAdministrationListContainer extends React.Component {
+class CartAdministrationListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contries: ''
+            carts: ''
         };
     }
 
-    handleDelete = (countryCode) => {
-        axios.delete('http://localhost:8080/api/countries/' + (countryCode))
+    //pagal pradinę mintį turėtų būti negalima trinti krepšelių - tik keičiamas jų statusas
+    handleDelete = (cartCode) => {
+        axios.delete('http://localhost:8080/api/carts/' + (cartCode))
           .then(response => {
-            axios.get('http://localhost:8080/api/countries')
+            axios.get('http://localhost:8080/api/carts')
             .then((response) => {
-                this.setState({ countries: response.data });
+                this.setState({ carts: response.data });
             })
             .catch((error) => {
                 console.log(error);
@@ -29,10 +30,17 @@ class CountryAdministrationListContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/api/countries')
+        var usernameFromStorage = JSON.parse(sessionStorage.getItem("user"));
+        
+        axios.get('http://localhost:8080/api/carts', {
+            params: {
+                username: usernameFromStorage.username
+            }
+        })
             .then((response) => {
-                this.setState({ countries: response.data });
-                //console.log(response.data);
+                this.setState({ carts: response.data });
+                console.log("---------------- Krepšeliai -----------------------")
+                console.log(response.data);
                 //console.log("Produktai yra - " + this.state.holidays);
             })
             .catch((error) => {
@@ -41,15 +49,14 @@ class CountryAdministrationListContainer extends React.Component {
     }
 
     render() {
-        if (this.state.countries) {
-            const countryCards = this.state.countries.map((item, index) => {
+        if (this.state.carts) {
+            const cartCards = this.state.carts.map((item, index) => {
                 return (
-                    <CountryAdministrationLineComponent
+                    <CartAdministrationLineComponent
                         key={index}
-                        countryCode={item.countryCode}
-                        title={item.title}
-                        image={item.image}
-                        handleDelete={this.handleDelete}
+                        cartCode={item.cartCode}
+                        description={item.description}
+                        cartStatus={item.status}
                     />
                 );
             });
@@ -57,11 +64,11 @@ class CountryAdministrationListContainer extends React.Component {
                 <div className="container">
                     <div className="card">
                         <div className="card-header">
-                            <h6 className="text-uppercase mb-0">Šalių administravimas</h6>
+                            <h6 className="text-uppercase mb-0">Krepšelių administravimas</h6>
                         </div>
                         <div className="card-body">
                             <div className="row">
-                                <Link className="btn btn-success" to="/admin/countries/new">Add new country</Link>
+                                <Link className="btn btn-success" to="/admin/carts/new">Add new cart</Link>
                             </div>
                             <div className="row">
                                 <div className="col-12">
@@ -71,12 +78,13 @@ class CountryAdministrationListContainer extends React.Component {
                                     >
                                         <thead className="thead-inverse">
                                             <tr>
-                                                <th>Country title</th>
-                                                <th width="30%">Country's flag</th>
+                                                <th>Cart code</th>
+                                                <th>Cart description</th>
+                                                <th>Cart status</th>
                                                 <th>Operation</th>
                                             </tr>
                                         </thead>
-                                        <tbody>{countryCards}</tbody>
+                                        <tbody>{cartCards}</tbody>
                                     </table>
                                 </div>
                             </div>
@@ -86,13 +94,13 @@ class CountryAdministrationListContainer extends React.Component {
             );
         }
         return (
-            <div class="text-center">
-                <div class="spinner-border text-danger" role="status">
-                    <span class="sr-only">Loading data...</span>
+            <div className="text-center">
+                <div className="spinner-border text-danger" role="status">
+                    <span className="sr-only">Loading data...</span>
                 </div>
             </div>        
         );
     }
 }
 
-export default CountryAdministrationListContainer;
+export default CartAdministrationListContainer;

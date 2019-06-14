@@ -73,22 +73,22 @@ class NewHolidayContainer extends React.Component {
     this.fromMenu = "Enter new holiday data:"
 
     return (
-      <NewHolidayComponent
-        title={this.state.title}
-        description={this.state.description}
-        image={this.state.image}
-        type={this.state.type}
-        typeListt={this.state.typeList}
-        flag={this.state.flag}
-        handleChangeOfTitle={this.handleChangeOfTitle}
-        handleChangeOfImage={this.handleChangeOfImage}
-        handleChangeOfDescription={this.handleChangeOfDescription}
-        handleChangeOfType={this.handleChangeOfType}
-        handleChangeOfFlag={this.handleChangeOfFlag}
-        handleSubmit={this.handleSubmit}
-        //TO DO Ar reikia šitą perdavinėti?
-        fromMenu={this.fromMenu}
-      />
+        <NewHolidayComponent
+          title={this.state.title}
+          description={this.state.description}
+          image={this.state.image}
+          type={this.state.type}
+          typeListt={this.state.typeList}
+          flag={this.state.flag}
+          handleChangeOfTitle={this.handleChangeOfTitle}
+          handleChangeOfImage={this.handleChangeOfImage}
+          handleChangeOfDescription={this.handleChangeOfDescription}
+          handleChangeOfType={this.handleChangeOfType}
+          handleChangeOfFlag={this.handleChangeOfFlag}
+          handleSubmit={this.handleSubmit}
+          //TO DO Ar reikia šitą perdavinėti?
+          fromMenu={this.fromMenu}
+        />
     );
   }
 }

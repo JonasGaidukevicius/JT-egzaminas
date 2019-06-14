@@ -2,6 +2,7 @@ package lt.sventes.holidays.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import lt.sventes.cart.model.Cart;
 import lt.sventes.countries.model.Country;
 
 @Entity
@@ -28,7 +30,13 @@ public class Holiday {
 	private String image;
 	@Column
 	private String type;
-	@Column boolean flag;
+	@Column
+	boolean flag;
+	// bandymas su krepšeliu
+	@Column
+	private int holidayQuantity;
+	@Column
+	private int holidayCartQuantity;
 	
 	@ManyToMany
 	@JoinTable(name="holiday_country",
@@ -36,6 +44,8 @@ public class Holiday {
 		inverseJoinColumns = @JoinColumn(name = "country_id", referencedColumnName = "id"))
 	private List<Country> countries = new ArrayList<>();
 	
+	@ManyToMany(mappedBy = "holidays")
+	List<Cart> carts = new ArrayList<>();
 	
 	
 	//@OneToOne(cascade = {CascadeType.ALL}) // MERGE, CascadeType.DETACH})
@@ -47,7 +57,6 @@ public class Holiday {
 	public Holiday() {
 	}
 
-	
 	//konstruktorius be id
 	public Holiday(String code, String title, String description, String image, String type, boolean flag, List<Country> countries) {
 		//this.id = id;
@@ -149,5 +158,22 @@ public class Holiday {
 		country.getHolidays().remove(this);
 	}
 	
+	// Kiekio seteriai ir geteriai
+
+	public int getHolidayQuantity() {
+		return holidayQuantity;
+	}
+
+	public void setHolidayQuantity(int holidayQuantity) {
+		this.holidayQuantity = holidayQuantity;
+	}
+
+	public int getHolidayCartQuantity() {
+		return holidayCartQuantity;
+	}
+
+	public void setHolidayCartQuantity(int holidayCartQuantity) {
+		this.holidayCartQuantity = holidayCartQuantity;
+	}
 	
 }

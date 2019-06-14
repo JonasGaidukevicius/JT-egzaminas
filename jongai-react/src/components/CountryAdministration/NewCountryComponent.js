@@ -8,11 +8,11 @@ const NewCountryComponet = props => {
     //     <option key={v}>{v}</option>
     //   ));
     return (
-        <div className="container">
+        <div className="container main-data">
             <form onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <div className="col-md-12 col-lg-10 mb-3">
-                        <p>{props.fromMenu}</p>
+                        <h5>{props.fromMenu}</h5>
                     </div>
                 </div>
                 <div className="form-row">
@@ -33,7 +33,7 @@ const NewCountryComponet = props => {
                 </div>
                 
                 <button className="btn btn-primary" type="submit">Save</button>&nbsp;
-                <Link to={`/admin/country`} className="btn btn-dark" >Cancel</Link>
+                <Link to={`/admin/countries`} className="btn btn-dark" >Cancel</Link>
                 {/* perdaryti pagal sita
             <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={this.props.onSaveClick}>Save</button>
             */}

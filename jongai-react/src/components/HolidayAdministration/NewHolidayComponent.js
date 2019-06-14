@@ -8,11 +8,11 @@ const NewHolidayComponet = props => {
     //     <option key={v}>{v}</option>
     //   ));
     return (
-        <div className="container">
+        <div className="container main-data">
             <form onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <div className="col-md-12 col-lg-10 mb-3">
-                        <p>{props.fromMenu}</p>
+                        <h5>{props.fromMenu}</h5>
                     </div>
                 </div>
                 <div className="form-row">
