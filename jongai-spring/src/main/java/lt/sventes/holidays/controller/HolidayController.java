@@ -47,16 +47,16 @@ public class HolidayController {
 	}*/
 	
 	// Visų švenčių gavimas su datos lauku
-		@RequestMapping(method = RequestMethod.GET)
-		@ApiOperation(value = "Get holiday list", notes = "Returns list of existing holidays")
-		public List<HolidayDataWithDate> getHolidayListWithDate() {
-			return holidayService.getFullListOfHolidaysWithDate();
-		}
+	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Get holiday list", notes = "Returns list of existing holidays")
+	public List<HolidayDataWithDate> getHolidayListWithDate() {
+		return holidayService.getFullListOfHolidaysWithDate();
+	}
 
 	// vienos šventės gavimas
 	@RequestMapping(path = "/{code}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get holiday", notes = "Returns selected holiday")
-	public HolidayData getHolidayByTitle(
+	public HolidayDataWithDate getHolidayByTitle(
 			@ApiParam(value = "Holiday title", required = true) @PathVariable final String code) {
 			return holidayService.findOneHolidayByCode(code);
 			//return holidayService.findHolidayByTitle(title);

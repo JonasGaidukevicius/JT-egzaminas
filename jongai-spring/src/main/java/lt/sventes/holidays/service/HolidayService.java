@@ -19,6 +19,7 @@ import lt.sventes.countries.service.CountryRepository;
 import lt.sventes.holidays.model.Holiday;
 import lt.sventes.holidays.model.HolidayData;
 import lt.sventes.holidays.model.HolidayDataWithDate;
+import lt.sventes.holidays.model.HolidayTypeName;
 import lt.sventes.security.payload.ApiResponse;
 
 @Service
@@ -46,30 +47,38 @@ public class HolidayService {
 				)).collect(Collectors.toList());
 	}
 	
+	
+	
 	// Visų švenčių nuskaitymas su datos lauku
-		@Transactional(readOnly = true)
-		public List<HolidayDataWithDate> getFullListOfHolidaysWithDate() {
-			return holidayRepository.findAll().stream()
-					.map((holiday) -> 
-					new HolidayDataWithDate(holiday.getCode(),
-									holiday.getTitle(),
-									holiday.getDescription(),
-									holiday.getImage(),
-									holiday.getType(),
-									holiday.isFlag(),
-									// holiday.getCountries()
-									holiday.getSimpleDate()
-					)).collect(Collectors.toList());
-		}
+	@Transactional(readOnly = true)
+	public List<HolidayDataWithDate> getFullListOfHolidaysWithDate() {
+		return holidayRepository.findAll().stream()
+				.map((holiday) -> 
+				new HolidayDataWithDate(holiday.getCode(),
+								holiday.getTitle(),
+								holiday.getDescription(),
+								holiday.getImage(),
+								replaceUnderscoreWithDash(holiday.getType()),
+								holiday.isFlag(),
+								// holiday.getCountries()
+								holiday.getSimpleDate()
+				)).collect(Collectors.toList());
+	}
+		
+	public String replaceUnderscoreWithDash(HolidayTypeName typeToModify) {
+		String modifiedType = typeToModify.toString().replaceAll("_", "-");
+		return modifiedType;
+	}
 
 	// Vienos šventės nuskaitymas
 	@Transactional(readOnly = true)
-	public HolidayData findOneHolidayByCode(String code) {
+	public HolidayDataWithDate findOneHolidayByCode(String code) {
 		//Holiday currentHoliday = holidayRepository.findHolidayByTitle(title);
 		Holiday currentHoliday = holidayRepository.findHolidayByCode(code);
-		HolidayData holidayToController = new HolidayData(currentHoliday.getCode(),
+		HolidayDataWithDate holidayToController = new HolidayDataWithDate(currentHoliday.getCode(),
 				currentHoliday.getTitle(), currentHoliday.getDescription(),
-				currentHoliday.getImage(), currentHoliday.getType(), currentHoliday.isFlag());
+				currentHoliday.getImage(), replaceUnderscoreWithDash(currentHoliday.getType()), currentHoliday.isFlag(),
+				currentHoliday.getSimpleDate());
 		return holidayToController;
 	}
 
@@ -101,29 +110,29 @@ public class HolidayService {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	// Naujos šventės su DATA sukūrimas
-		@Transactional
-		public ResponseEntity<?> createHolidayWithDate(String title, String description, String image, String type, boolean flag,
-				List<Country> countries, LocalDate simpleDate) {
+	@Transactional
+	public ResponseEntity<?> createHolidayWithDate(String title, String description, String image, String type, boolean flag,
+			List<Country> countries, LocalDate simpleDate) {
 
-			// Patikrinu ar tokiu pavadinimu šventė jau egzistuoja
-			if (holidayRepository.existsByTitle(title)) {
-				return new ResponseEntity<>(new ApiResponse(false, "Holiday with such title already exists"),
-						HttpStatus.BAD_REQUEST);
-			}
-
-			//1.Sugeneruoju atsitiktinę eilutę iš 7 simbolių
-			String code = RandomStringUtils.random(7, true, true);
-			//2.Modifikuoju title, kad jame nebūtų tarpų
-			String modifiedTitle = title.replaceAll("\\s+","");
-			//3.Sugeneruoju galutinį lauką code
-			code += "_" + modifiedTitle;
-			Holiday newHoliday = new Holiday(code, title, description, image, type, flag, countries, simpleDate);
-			Holiday result = holidayRepository.save(newHoliday);
-			log.info("A new holiday (" + title + ") has been created");
-			URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/holidays/{code}")
-					.buildAndExpand(result.getCode()).toUri();
-			return ResponseEntity.created(location).body(new ApiResponse(true, "Holiday created successfully"));
+		// Patikrinu ar tokiu pavadinimu šventė jau egzistuoja
+		if (holidayRepository.existsByTitle(title)) {
+			return new ResponseEntity<>(new ApiResponse(false, "Holiday with such title already exists"),
+					HttpStatus.BAD_REQUEST);
 		}
+		String modifiedType = type.replaceAll("-", "_");
+		//1.Sugeneruoju atsitiktinę eilutę iš 7 simbolių
+		String code = RandomStringUtils.random(7, true, true);
+		//2.Modifikuoju title, kad jame nebūtų tarpų
+		String modifiedTitle = title.replaceAll("\\s+","");
+		//3.Sugeneruoju galutinį lauką code
+		code += "_" + modifiedTitle;
+		Holiday newHoliday = new Holiday(code, title, description, image, HolidayTypeName.valueOf(modifiedType), flag, countries, simpleDate);
+		Holiday result = holidayRepository.save(newHoliday);
+		log.info("A new holiday (" + title + ") has been created");
+		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/holidays/{code}")
+				.buildAndExpand(result.getCode()).toUri();
+		return ResponseEntity.created(location).body(new ApiResponse(true, "Holiday created successfully"));
+	}
 		
 		////////////////////////////////////////////////////////////////////////////////////
 
@@ -131,12 +140,19 @@ public class HolidayService {
 	@Transactional
 	public void updateHoliday(String code, String title, String description, String image, String type,
 			boolean flag) {
+		// Reikia gautą šventės tipą patikrinti ar jis turi savyje simbolių "-" ir juos pakeisti į "_"
+		String modifiedType = type.replaceAll("-", "_");
+		System.out.println("************************************************");
+		System.out.println("************************************************");
+		System.out.println("************************************************");
+		System.out.println("ModifiedType = " + modifiedType);
+		
 		//Holiday holidayToUpdate = holidayRepository.findHolidayByTitle(currentTitle);
 		Holiday holidayToUpdate = holidayRepository.findHolidayByCode(code);
 		holidayToUpdate.setTitle(title);
 		holidayToUpdate.setDescription(description);
 		holidayToUpdate.setImage(image);
-		holidayToUpdate.setType(type);
+		holidayToUpdate.setType(HolidayTypeName.valueOf(modifiedType));
 		holidayToUpdate.setFlag(flag);
 		holidayRepository.save(holidayToUpdate);
 		log.info("Holiday (" + title + ") has been updated");

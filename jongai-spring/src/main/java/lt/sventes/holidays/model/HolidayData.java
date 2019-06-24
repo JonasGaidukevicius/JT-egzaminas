@@ -13,11 +13,11 @@ public class HolidayData {
 	@Length(min = 1, max = 100)
 	private String description;
 	private String image;
-	private String type;
+	private HolidayTypeName type;
 	boolean flag;
 	//List<Country> countries;
 	
-	public HolidayData(String code, String title, String description, String image, String type, boolean flag) {
+	public HolidayData(String code, String title, String description, String image, HolidayTypeName type, boolean flag) {
 		super();
 		this.code = code;
 		this.title = title;
@@ -60,11 +60,11 @@ public class HolidayData {
 		this.image = image;
 	}
 
-	public String getType() {
+	public HolidayTypeName getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(HolidayTypeName type) {
 		this.type = type;
 	}
 

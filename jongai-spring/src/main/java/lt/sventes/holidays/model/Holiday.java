@@ -32,8 +32,15 @@ public class Holiday {
 	private String description;
 	@Column
 	private String image;
+	
+	// Naujas type variantas su Enum
 	@Column
-	private String type;
+	private HolidayTypeName type;
+	
+	// Senas type variantas su String
+	//@Column
+	//private String type;
+	
 	@Column
 	boolean flag;
 	
@@ -77,7 +84,7 @@ public class Holiday {
 	}
 
 	//konstruktorius be id
-	public Holiday(String code, String title, String description, String image, String type, boolean flag,
+	public Holiday(String code, String title, String description, String image, HolidayTypeName type, boolean flag,
 			List<Country> countries) {
 		//this.id = id;
 		this.code = code;
@@ -90,7 +97,7 @@ public class Holiday {
 	}
 	
 	//konstruktorius be id ir su data
-		public Holiday(String code, String title, String description, String image, String type, boolean flag,
+		public Holiday(String code, String title, String description, String image, HolidayTypeName type, boolean flag,
 				List<Country> countries, LocalDate simpleDate) {
 			//this.id = id;
 			this.code = code;
@@ -153,15 +160,23 @@ public class Holiday {
 	}
 
 
-	public String getType() {
+	/*public String getType() {
+		return type;
+	}*/
+
+
+	/*public void setType(String type) {
+		this.type = type;
+	}*/
+
+	// Naujas type laukas su Enum
+	public HolidayTypeName getType() {
 		return type;
 	}
 
-
-	public void setType(String type) {
+	public void setType(HolidayTypeName type) {
 		this.type = type;
 	}
-
 
 	public boolean isFlag() {
 		return flag;

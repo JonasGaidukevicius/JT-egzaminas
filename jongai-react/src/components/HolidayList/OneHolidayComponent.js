@@ -43,6 +43,9 @@ const OneHolidayComponent = (props) => {
                     <div className="row pabraukti">
                         <p>{props.flag}</p>
                     </div>
+                    <div className="row pabraukti">
+                        <p>{props.simpleDate}</p>
+                    </div>
                     <div className="row">
                         <Link to={`/`} className="btn btn-dark mt-3">Back</Link>
                     </div>

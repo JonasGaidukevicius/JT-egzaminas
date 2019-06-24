@@ -14,7 +14,8 @@ class EditHolidayContainer extends React.Component {
       image: "",
       description: "",
       type: "",
-      flag: false
+      flag: false,
+      simpleDate: ''
     };
   }
 
@@ -36,6 +37,7 @@ class EditHolidayContainer extends React.Component {
         this.setState({ description: response.data.description });
         this.setState({ type: response.data.type });
         this.setState({ flag: response.data.flag });
+        this.setState({ simpleDate: response.data.simpleDate})
 
         console.log("Pagaminau tokį State ->" + this.state);
         //console.log("Toks description iš state'o -> " + this.state.id);
@@ -64,6 +66,11 @@ class EditHolidayContainer extends React.Component {
 
   handleChangeOfFlag = (event) => {
     this.setState({ flag: event.target.checked });
+  }
+
+  handleChangeOfSimpleDate = (event) => {
+    //console.log("Kokia vėliavos reikšmė? -> " + event.target.checked);
+    this.setState({ simpleDate: event.target.value });
   }
 
   handleSubmit = (event) => {
@@ -99,11 +106,13 @@ class EditHolidayContainer extends React.Component {
           currentDescription={this.state.description}
           currentType={this.state.type}
           currentFlag={this.state.flag}
+          simpleDate={this.state.simpleDate}
           handleChangeOfTitle={this.handleChangeOfTitle}
           handleChangeOfImage={this.handleChangeOfImage}
           handleChangeOfDescription={this.handleChangeOfDescription}
           handleChangeOfType={this.handleChangeOfType}
           handleChangeOfFlag={this.handleChangeOfFlag}
+          handleChangeOfSimpleDate={this.handleChangeOfSimpleDate}
           handleSubmit={this.handleSubmit}
           handleDelete={this.handleDelete}
           fromMenu={this.fromMenu}
