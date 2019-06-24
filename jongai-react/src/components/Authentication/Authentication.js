@@ -21,6 +21,7 @@ export default class Authentication extends Component {
     //this.getUserGroups();
   };
 
+  // turbūt nereikalingas metodas
   getUserGroups = () => {
     Axios.get("/api/users/action/review/")
       .then(res => {
@@ -36,8 +37,8 @@ export default class Authentication extends Component {
 
   onClickLogoutHandler = () => {
     this.setState({ isLogged: false });
-    sessionStorage.clear("user");
-    sessionStorage.clear("accessToken");
+    sessionStorage.clear("user"); // sessionStorage pats gi išsivalo. Turbūt nereikia čia šito
+    sessionStorage.clear("accessToken"); // sessionStorage pats gi išsivalo. Turbūt nereikia čia šito
     delete Axios.defaults.headers.Authorization;
   };
 

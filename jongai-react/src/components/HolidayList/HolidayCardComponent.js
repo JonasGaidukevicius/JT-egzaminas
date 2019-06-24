@@ -17,6 +17,7 @@ const HolidayCardComponent = (props) => {
                 <p className="card-text">{props.description}</p>
                 <p className="card-text">Type: {props.type}</p>
                 <p className="card-text">Rise flag: {props.flag}</p>
+                <p className="card-text">{props.simpleDate}</p>
                 <Link className="btn btn-primary" to={linkas}>Holiday details</Link>
             </div>
         </div>

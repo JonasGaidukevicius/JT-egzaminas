@@ -5,27 +5,32 @@ import { Link } from 'react-router-dom';
 const EditHolidayComponet = (props) => {
 
     return (
-        <div className="container">
+        <div className="container main-data">
             <form onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <div className="col-md-12 col-lg-10 mb-3">
-                        <p>{props.fromMenu}</p>
+                        <h5>{props.fromMenu}</h5>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="title">Holiday title:&nbsp;</label>
-                        <input type="text" className="form-control" id="title" value={props.currentTitle} required onChange={props.handleChangeOfTitle}></input>
+                        <input type="text" className="form-control" id="title" value={props.currentTitle} required
+                                onChange={props.handleChangeOfTitle}
+                                pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="30" title="Title must contain only letters up to 30 symbols"></input>
                     </div>
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="image">Image:&nbsp;</label>
-                        <input type="text" className="form-control" id="image" value={props.currentImage} required onChange={props.handleChangeOfImage}></input>
+                        <input type="text" className="form-control" id="image" value={props.currentImage} required
+                                onChange={props.handleChangeOfImage}></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-md-8 col-lg-8 mb-3">
                         <label htmlFor="description">Description:&nbsp;</label>
-                        <input type="text" className="form-control" id="description" value={props.currentDescription} required onChange={props.handleChangeOfDescription}></input>
+                        <input type="text" className="form-control" id="description" value={props.currentDescription} required
+                                onChange={props.handleChangeOfDescription} pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="50"
+                                title="Description must contain only letters up to 50 symbols"></input>
                     </div>
                 </div>
                 <div className="form-row">
@@ -47,7 +52,7 @@ const EditHolidayComponet = (props) => {
                             {optionList} */}
                         </select>
                     </div>
-                    <div className="col-md-1 col-lg-1 mb-3">
+                    <div className="col-md-3 col-lg-3 mb-3">
                         <label className="form-check-label" htmlFor="flag">
                             <input className="form-check-input" type="checkbox" id="flag" checked={props.currentFlag} onChange={props.handleChangeOfFlag}></input>
                             Flag rising</label>
