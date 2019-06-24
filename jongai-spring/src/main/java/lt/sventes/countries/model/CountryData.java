@@ -1,11 +1,17 @@
 package lt.sventes.countries.model;
 
-import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 public class CountryData {
 	private String countryCode;
+	@NotNull
+	@Length(min = 1, max = 50)
 	private String title;
 	private String image;
+	@NotNull
+	@Length(min = 1, max = 50)
 	private String president;
 	
 	public CountryData(String countryCode, String title, String image, String president) {

@@ -1,13 +1,28 @@
 package lt.sventes.users.models;
 
-//import com.example.polls.model.audit.DateAudit;
-import org.hibernate.annotations.NaturalId;
-import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+
+//import com.example.polls.model.audit.DateAudit;
+import org.hibernate.annotations.NaturalId;
+
+import lt.sventes.cart.model.Cart;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -46,6 +61,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+	// Krepšelio darymas
+	@OneToMany(mappedBy = "user")
+	private List<Cart> carts;
 
     public User() {
 
@@ -106,10 +125,21 @@ public class User {
         this.roles = roles;
     }
     
-    //Mano parasytas metodas, kad vartotojui itraukti naujas roles.
-    
-    public void addMoreRoles(Role role) {
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+
+	// Mano parasytas metodas, kad vartotojui itraukti naujas roles.
+	public void addMoreRoles(Role role) {
     	//kol kas nera tikrinimo ar tokia role jau turi vartotojas
     	roles.add(role);
     }
+
+	public void addCartsToUser(Cart cart) {
+		this.carts.add(cart);
+	}
 }

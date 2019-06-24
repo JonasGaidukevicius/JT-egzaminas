@@ -44,7 +44,7 @@ public class CountryController {
 	@RequestMapping(path = "/{countryCode}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get country", notes = "Returns selected country")
 	public CountryData getOneCountryByCountryCode(
-			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String countryCode) {
+			@ApiParam(value = "Country title", required = true) @PathVariable final String countryCode) {
 
 		return countryService.findCountryByCountryCode(countryCode);
 		
@@ -66,7 +66,7 @@ public class CountryController {
 	@ApiOperation(value = "Edit country", notes = "Change selected country's data")
 
 	public void updateCountry(
-			@ApiParam(value = "Country title", required = true) @Valid @PathVariable final String countryCode,
+			@ApiParam(value = "Country title", required = true) @PathVariable final String countryCode,
 			@ApiParam(value = "Country data", required = true) @Valid @RequestBody final CreateCountryCommand ccc) {
 
 		countryService.updateCountry(countryCode, ccc.getTitle(), ccc.getImage(), ccc.getPresident());

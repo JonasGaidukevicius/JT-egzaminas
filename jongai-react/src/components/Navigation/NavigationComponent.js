@@ -30,6 +30,9 @@ var NavigationComponent = (props) => {
                     <li className="nav-item">
                         <Link to='/newUser' className="btn btn-primary">Create new user</Link> &nbsp;
                     </li>
+                    <li className="nav-item">
+                        <Link to='/admin/carts' className="btn btn-info">Cart administration</Link> &nbsp;
+                    </li>
                 </ul>
 
                 {/* <form className="form-inline">

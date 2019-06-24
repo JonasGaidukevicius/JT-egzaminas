@@ -11,6 +11,8 @@ import NewCountryContainer from '../CountryAdministration/NewCountryContainer';
 import EditCountryContainer from '../CountryAdministration/EditCountryContainer';
 import OneCountryContainer from '../CountryList/OneCountryContainer';
 import NewUserContainer from '../UserAdministration/NewUserContainer';
+import CartAdministrationListContainer from '../CartAdministration/CartAdministrationListContainer';
+import NewCartContainer from '../CartAdministration/NewCartContainer';
 
 class NavigationContainer extends React.Component {
     //constructor(props) {
@@ -82,6 +84,16 @@ class NavigationContainer extends React.Component {
                         />
                         <Route path="/newUser" render={props => (
                             <NewUserContainer {...props} />
+                        )}
+                        exact
+                        />
+                        <Route path="/admin/carts" render={props => (
+                            <CartAdministrationListContainer {...props} />
+                        )}
+                        exact
+                        />
+                        <Route path="/admin/carts/new" render={props => (
+                            <NewCartContainer {...props} />
                         )}
                         exact
                         />

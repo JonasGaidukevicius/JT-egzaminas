@@ -3,11 +3,14 @@ package lt.sventes.countries.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import lt.sventes.holidays.model.Holiday;
@@ -25,9 +28,16 @@ public class Country {
 	private String image;
 	@Column
 	private String president;
-	@ManyToMany(mappedBy="countries")
-	List<Holiday> holidays = new ArrayList<>();
+
+	// senasis apjungimo -> čia yra ne savininkas
+	// @ManyToMany(mappedBy="countries")
+	// List<Holiday> holidays = new ArrayList<>();
 	
+	// Dabartinis veikiantis variantas, kai čia yra savininko pusė
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.DETACH })
+	@JoinTable(name = "holiday_country", joinColumns = @JoinColumn(name = "country_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "holiday_id", referencedColumnName = "id"))
+	List<Holiday> holidays = new ArrayList<>();
+
 	//@OneToOne(cascade = {CascadeType.ALL}) // MERGE, CascadeType.DETACH})
 	//private ProductDetails productDetails;
 	//nebūtinas šitas laukas surišimui

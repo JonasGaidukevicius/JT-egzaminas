@@ -17,8 +17,11 @@
   margin: 2px
 }
 
-div.container {
-  border: 1px black solid;
+div.main-data {
   display: flex;
   justify-content: center;
+}
+
+div.container {
+  border: 1px black solid;
 }
