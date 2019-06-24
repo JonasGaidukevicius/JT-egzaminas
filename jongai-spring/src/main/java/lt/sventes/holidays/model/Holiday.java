@@ -1,21 +1,25 @@
 package lt.sventes.holidays.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.Index;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import lt.sventes.cart.model.Cart;
 import lt.sventes.countries.model.Country;
 
 @Entity
+@Table(name = "holiday", indexes = { @Index(name = "idx_code", columnList = "code", unique = true),
+		@Index(name = "idx_title", columnList = "title", unique = true) })
 public class Holiday {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,18 +36,33 @@ public class Holiday {
 	private String type;
 	@Column
 	boolean flag;
+	
+	//Testinis datos laukelis
+	private LocalDate simpleDate; 
 	// bandymas su krepšeliu
 	@Column
 	private int holidayQuantity;
 	@Column
 	private int holidayCartQuantity;
 	
-	@ManyToMany
-	@JoinTable(name="holiday_country",
-		joinColumns=@JoinColumn(name = "holiday_id", referencedColumnName = "id"),
-		inverseJoinColumns = @JoinColumn(name = "country_id", referencedColumnName = "id"))
+	// JEIGU REIKĖTŲ NAUDOTI *DATE* TIPO LAUKĄ, TAI JAM REIKIA TAIKYTI ANOTACIJĄ
+	// *@TEMPORAL
+	// @Temporal(TemporalType.DATE)
+	// private Date testineData;
+
+	// senasis variantas apjungimo -> čia yra savininkas
+	// @ManyToMany
+	// @JoinTable(name="holiday_country",
+	// joinColumns=@JoinColumn(name = "holiday_id", referencedColumnName = "id"),
+	// inverseJoinColumns = @JoinColumn(name = "country_id", referencedColumnName =
+	// "id"))
+	// private List<Country> countries = new ArrayList<>();
+	
+	// Dabartinis veikiantis variantas, kai čia ne savininko pusė
+	@ManyToMany(mappedBy = "holidays", cascade = CascadeType.ALL)
 	private List<Country> countries = new ArrayList<>();
 	
+	//Čia krepšelis
 	@ManyToMany(mappedBy = "holidays")
 	List<Cart> carts = new ArrayList<>();
 	
@@ -58,7 +77,8 @@ public class Holiday {
 	}
 
 	//konstruktorius be id
-	public Holiday(String code, String title, String description, String image, String type, boolean flag, List<Country> countries) {
+	public Holiday(String code, String title, String description, String image, String type, boolean flag,
+			List<Country> countries) {
 		//this.id = id;
 		this.code = code;
 		this.title = title;
@@ -68,6 +88,20 @@ public class Holiday {
 		this.flag = flag;
 		this.countries = countries;
 	}
+	
+	//konstruktorius be id ir su data
+		public Holiday(String code, String title, String description, String image, String type, boolean flag,
+				List<Country> countries, LocalDate simpleDate) {
+			//this.id = id;
+			this.code = code;
+			this.title = title;
+			this.description = description;
+			this.image = image;
+			this.type = type;
+			this.flag = flag;
+			this.countries = countries;
+			this.simpleDate = simpleDate;
+		}
 	
 	public long getId() {
 		return id;
@@ -158,6 +192,16 @@ public class Holiday {
 		country.getHolidays().remove(this);
 	}
 	
+	// Testinė data
+
+	public LocalDate getSimpleDate() {
+		return simpleDate;
+	}
+
+	public void setSimpleDate(LocalDate simpleDate) {
+		this.simpleDate = simpleDate;
+	}
+
 	// Kiekio seteriai ir geteriai
 
 	public int getHolidayQuantity() {

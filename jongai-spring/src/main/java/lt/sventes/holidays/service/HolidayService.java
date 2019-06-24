@@ -1,6 +1,7 @@
 package lt.sventes.holidays.service;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import lt.sventes.countries.model.Country;
 import lt.sventes.countries.service.CountryRepository;
 import lt.sventes.holidays.model.Holiday;
 import lt.sventes.holidays.model.HolidayData;
+import lt.sventes.holidays.model.HolidayDataWithDate;
 import lt.sventes.security.payload.ApiResponse;
 
 @Service
@@ -43,6 +45,22 @@ public class HolidayService {
 								// holiday.getCountries()
 				)).collect(Collectors.toList());
 	}
+	
+	// Visų švenčių nuskaitymas su datos lauku
+		@Transactional(readOnly = true)
+		public List<HolidayDataWithDate> getFullListOfHolidaysWithDate() {
+			return holidayRepository.findAll().stream()
+					.map((holiday) -> 
+					new HolidayDataWithDate(holiday.getCode(),
+									holiday.getTitle(),
+									holiday.getDescription(),
+									holiday.getImage(),
+									holiday.getType(),
+									holiday.isFlag(),
+									// holiday.getCountries()
+									holiday.getSimpleDate()
+					)).collect(Collectors.toList());
+		}
 
 	// Vienos šventės nuskaitymas
 	@Transactional(readOnly = true)
@@ -56,7 +74,7 @@ public class HolidayService {
 	}
 
 	// Naujos šventės sukūrimas
-	@Transactional
+	/*@Transactional
 	public ResponseEntity<?> createHoliday(String title, String description, String image, String type, boolean flag,
 			List<Country> countries) {
 
@@ -78,7 +96,36 @@ public class HolidayService {
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/holidays/{code}")
 				.buildAndExpand(result.getCode()).toUri();
 		return ResponseEntity.created(location).body(new ApiResponse(true, "Holiday created successfully"));
-	}
+	}*/
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Naujos šventės su DATA sukūrimas
+		@Transactional
+		public ResponseEntity<?> createHolidayWithDate(String title, String description, String image, String type, boolean flag,
+				List<Country> countries, LocalDate simpleDate) {
+
+			// Patikrinu ar tokiu pavadinimu šventė jau egzistuoja
+			if (holidayRepository.existsByTitle(title)) {
+				return new ResponseEntity<>(new ApiResponse(false, "Holiday with such title already exists"),
+						HttpStatus.BAD_REQUEST);
+			}
+
+			//1.Sugeneruoju atsitiktinę eilutę iš 7 simbolių
+			String code = RandomStringUtils.random(7, true, true);
+			//2.Modifikuoju title, kad jame nebūtų tarpų
+			String modifiedTitle = title.replaceAll("\\s+","");
+			//3.Sugeneruoju galutinį lauką code
+			code += "_" + modifiedTitle;
+			Holiday newHoliday = new Holiday(code, title, description, image, type, flag, countries, simpleDate);
+			Holiday result = holidayRepository.save(newHoliday);
+			log.info("A new holiday (" + title + ") has been created");
+			URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/holidays/{code}")
+					.buildAndExpand(result.getCode()).toUri();
+			return ResponseEntity.created(location).body(new ApiResponse(true, "Holiday created successfully"));
+		}
+		
+		////////////////////////////////////////////////////////////////////////////////////
 
 	// Esamos šventės duomenų pakeitimas
 	@Transactional

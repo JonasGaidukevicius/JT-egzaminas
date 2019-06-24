@@ -37,6 +37,7 @@ class HolidayListContainer extends React.Component {
                         image={holiday.image}
                         type={holiday.type}
                         flag={holiday.flag === true ? "Yes" : "No"}
+                        simpleDate={holiday.simpleDate}
                     />
                 );
             });

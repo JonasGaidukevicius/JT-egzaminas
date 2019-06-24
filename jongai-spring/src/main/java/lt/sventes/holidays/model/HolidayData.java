@@ -1,12 +1,16 @@
 package lt.sventes.holidays.model;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
-import lt.sventes.countries.model.Country;
+import org.hibernate.validator.constraints.Length;
 
 public class HolidayData {
 	private String code;
+	@NotNull
+	@Length(min = 1, max = 50)
 	private String title;
+	@NotNull
+	@Length(min = 1, max = 100)
 	private String description;
 	private String image;
 	private String type;

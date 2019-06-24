@@ -13,23 +13,30 @@ const NewUserComponet = props => {
                 <div className="form-row">
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="title">User full name:&nbsp;</label>
-                        <input type="text" className="form-control" id="title" placeholder="User full name" value={props.name} required onChange={props.handleChangeOfName}></input>
+                        <input type="text" className="form-control" id="title" placeholder="User full name"
+                                value={props.name} required onChange={props.handleChangeOfName}
+                                pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="40" title="Must contain only letters up to 40 symbols"></input>
                     </div>
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="image">Username:&nbsp;</label>
-                        <input type="text" className="form-control" id="image" placeholder="Username" value={props.username} required onChange={props.handleChangeOfUsername}></input>
+                        <input type="text" className="form-control" id="image" placeholder="Username"
+                                value={props.username} required onChange={props.handleChangeOfUsername}
+                                pattern="^[a-zA-Z]+$" minLength="6" maxLength="12" title="Must be min 6 max 12 symbols"></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-md-8 col-lg-8 mb-3">
                         <label htmlFor="description">E-mail:&nbsp;</label>
-                        <input type="text" className="form-control" id="description" placeholder="E-mail address" value={props.email} required onChange={props.handleChangeOfEmail}></input>
+                        <input type="email" className="form-control" id="description" placeholder="E-mail address"
+                                value={props.email} required onChange={props.handleChangeOfEmail}></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-md-8 col-lg-8 mb-3">
                         <label htmlFor="description">Password:&nbsp;</label>
-                        <input type="text" className="form-control" id="description" placeholder="Password" value={props.password} required onChange={props.handleChangeOfPassword}></input>
+                        <input type="text" className="form-control" id="description" placeholder="Password"
+                                value={props.password} required onChange={props.handleChangeOfPassword}
+                                minLength="6" title="Password must be minimum of 6 symbols"></input>
                     </div>
                 </div>
                 <div className="form-row">

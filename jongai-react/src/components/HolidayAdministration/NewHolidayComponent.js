@@ -18,17 +18,23 @@ const NewHolidayComponet = props => {
                 <div className="form-row">
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="title">Holiday title:&nbsp;</label>
-                        <input type="text" className="form-control" id="title" placeholder="Holiday title" value={props.title} required onChange={props.handleChangeOfTitle}></input>
+                        <input type="text" className="form-control" id="title" placeholder="Holiday title"
+                                value={props.title} required onChange={props.handleChangeOfTitle}
+                                pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="30" title="Must contain only letters up to 30 symbols"></input>
                     </div>
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="image">Image:&nbsp;</label>
-                        <input type="text" className="form-control" id="image" placeholder="Image" value={props.image} required onChange={props.handleChangeOfImage}></input>
+                        <input type="text" className="form-control" id="image" placeholder="Image"
+                                value={props.image} required onChange={props.handleChangeOfImage}></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-md-8 col-lg-8 mb-3">
                         <label htmlFor="description">Description:&nbsp;</label>
-                        <input type="text" className="form-control" id="description" placeholder="Description" value={props.description} required onChange={props.handleChangeOfDescription}></input>
+                        <input type="text" className="form-control" id="description" placeholder="Description"
+                                value={props.description} required onChange={props.handleChangeOfDescription}
+                                pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="50"
+                                title="Description must contain only letters up to 50 symbols"></input>
                     </div>
                 </div>
                 <div className="form-row">
@@ -54,6 +60,14 @@ const NewHolidayComponet = props => {
                         &nbsp;&nbsp;&nbsp;<label className="form-check-label" htmlFor="flag">
                             <input className="form-check-input" type="checkbox" id="flag" value={props.flag} onChange={props.handleChangeOfFlag}></input>
                             Flag rising</label>
+                    </div>
+                </div>
+                <div className="form-row">
+                <div className="col-md-8 col-lg-8 mb-3">
+                        <label htmlFor="description">Description:&nbsp;</label>
+                        <input type="date" className="form-control" id="simpleDate" 
+                                value={props.simpleDate} required onChange={props.handleChangeOfSimpleDate}
+                        ></input>
                     </div>
                 </div>
                 <button className="btn btn-primary" type="submit">Save</button>&nbsp;

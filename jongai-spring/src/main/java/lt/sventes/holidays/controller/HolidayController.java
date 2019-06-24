@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiParam;
 import lt.sventes.countries.model.Country;
 import lt.sventes.countries.service.CountryService;
 import lt.sventes.holidays.model.HolidayData;
+import lt.sventes.holidays.model.HolidayDataWithDate;
 import lt.sventes.holidays.service.HolidayService;
 
 @RestController
@@ -39,37 +40,54 @@ public class HolidayController {
 	}
 
 	// Visų švenčių gavimas
-	@RequestMapping(method = RequestMethod.GET)
+	/*@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get holiday list", notes = "Returns list of existing holidays")
 	public List<HolidayData> getHolidayList() {
 		return holidayService.getFullListOfHolidays();
-	}
+	}*/
+	
+	// Visų švenčių gavimas su datos lauku
+		@RequestMapping(method = RequestMethod.GET)
+		@ApiOperation(value = "Get holiday list", notes = "Returns list of existing holidays")
+		public List<HolidayDataWithDate> getHolidayListWithDate() {
+			return holidayService.getFullListOfHolidaysWithDate();
+		}
 
 	// vienos šventės gavimas
 	@RequestMapping(path = "/{code}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get holiday", notes = "Returns selected holiday")
 	public HolidayData getHolidayByTitle(
-			@ApiParam(value = "Holiday title", required = true) @Valid @PathVariable final String code) {
+			@ApiParam(value = "Holiday title", required = true) @PathVariable final String code) {
 			return holidayService.findOneHolidayByCode(code);
 			//return holidayService.findHolidayByTitle(title);
 	}
 
 	// naujos šventės suvedimas
-	@RequestMapping(method = RequestMethod.POST)
+	/*@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create new holiday", notes = "Creates new holiday with provided data")
 	public ResponseEntity<?> createHoliday(
 			@ApiParam(value = "Holiday data", required = true) @Valid @RequestBody final CreateHolidayCommand chc) {
 		return holidayService.createHoliday(chc.getTitle(), chc.getDescription(), chc.getImage(), chc.getType(),
 				chc.isFlag(), new ArrayList<Country>());
-	}
+	}*/
+	
+	// naujos šventės SU DATA suvedimas
+		@RequestMapping(method = RequestMethod.POST)
+		@ResponseStatus(HttpStatus.CREATED)
+		@ApiOperation(value = "Create new holiday", notes = "Creates new holiday with provided data")
+		public ResponseEntity<?> createHolidayWithDate(
+				@ApiParam(value = "Holiday data", required = true) @Valid @RequestBody final CreateHolidayCommand chc) {
+			return holidayService.createHolidayWithDate(chc.getTitle(), chc.getDescription(), chc.getImage(), chc.getType(),
+					chc.isFlag(), new ArrayList<Country>(), chc.getSimpleDate());
+		}
 
 	// šventės atnaujinimas
 	@RequestMapping(path = "/{code}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "Edit holiday", notes = "Change selected holiday's data")
 	public void updateHoliday(
-			@ApiParam(value = "Holiday code", required = true) @Valid @PathVariable final String code,
+			@ApiParam(value = "Holiday code", required = true) @PathVariable final String code,
 			@ApiParam(value = "Holiday data", required = true) @Valid @RequestBody final CreateHolidayCommand chc) {
 
 		holidayService.updateHoliday(code, chc.getTitle(), chc.getDescription(), chc.getImage(),

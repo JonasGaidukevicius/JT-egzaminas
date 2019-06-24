@@ -15,17 +15,22 @@ const EditHolidayComponet = (props) => {
                 <div className="form-row">
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="title">Holiday title:&nbsp;</label>
-                        <input type="text" className="form-control" id="title" value={props.currentTitle} required onChange={props.handleChangeOfTitle}></input>
+                        <input type="text" className="form-control" id="title" value={props.currentTitle} required
+                                onChange={props.handleChangeOfTitle}
+                                pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="30" title="Title must contain only letters up to 30 symbols"></input>
                     </div>
                     <div className="col-md-4 col-lg-4 mb-3">
                         <label htmlFor="image">Image:&nbsp;</label>
-                        <input type="text" className="form-control" id="image" value={props.currentImage} required onChange={props.handleChangeOfImage}></input>
+                        <input type="text" className="form-control" id="image" value={props.currentImage} required
+                                onChange={props.handleChangeOfImage}></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-md-8 col-lg-8 mb-3">
                         <label htmlFor="description">Description:&nbsp;</label>
-                        <input type="text" className="form-control" id="description" value={props.currentDescription} required onChange={props.handleChangeOfDescription}></input>
+                        <input type="text" className="form-control" id="description" value={props.currentDescription} required
+                                onChange={props.handleChangeOfDescription} pattern="^[a-zA-ZÀ-ž\s]+$" maxLength="50"
+                                title="Description must contain only letters up to 50 symbols"></input>
                     </div>
                 </div>
                 <div className="form-row">

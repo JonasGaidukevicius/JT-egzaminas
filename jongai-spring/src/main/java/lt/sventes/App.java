@@ -38,12 +38,18 @@ public class App extends SpringBootServletInitializer {
 
 	@Bean
 	public Docket swaggerDocket() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-				.apis(RequestHandlerSelectors.basePackage("lt.sventes")).build();
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(apiInfo())
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("lt.sventes"))
+				.build();
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Holidays Documentation").version("0.0.1-SNAPSHOT").build();
+		return new ApiInfoBuilder()
+				.title("Holidays Documentation")
+				.version("1.0-SNAPSHOT")
+				.build();
 	}
 
 }
