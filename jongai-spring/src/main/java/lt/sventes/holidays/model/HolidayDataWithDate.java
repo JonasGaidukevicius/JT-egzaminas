@@ -15,7 +15,7 @@ public class HolidayDataWithDate {
 	@Length(min = 1, max = 100)
 	private String description;
 	private String image;
-	private String type;
+	private String type; // Čia type yra String, nes aš transformuoju Enumą į Stringą servise ir dar pakeičiu visus "_" į "-"
 	boolean flag;
 	//List<Country> countries;
 	private LocalDate simpleDate;

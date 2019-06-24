@@ -63,8 +63,8 @@ const NewHolidayComponet = props => {
                     </div>
                 </div>
                 <div className="form-row">
-                <div className="col-md-8 col-lg-8 mb-3">
-                        <label htmlFor="description">Description:&nbsp;</label>
+                    <div className="col-md-8 col-lg-8 mb-3">
+                        <label htmlFor="description">Simple date:&nbsp;</label>
                         <input type="date" className="form-control" id="simpleDate" 
                                 value={props.simpleDate} required onChange={props.handleChangeOfSimpleDate}
                         ></input>

@@ -58,6 +58,14 @@ const EditHolidayComponet = (props) => {
                             Flag rising</label>
                     </div>
                 </div>
+                <div className="form-row">
+                    <div className="col-md-8 col-lg-8 mb-3">
+                        <label htmlFor="description">Simple date:&nbsp;</label>
+                        <input type="date" className="form-control" id="simpleDate" 
+                                value={props.simpleDate} required onChange={props.handleChangeOfSimpleDate}
+                        ></input>
+                    </div>
+                </div>
                 <button className="btn btn-primary" type="submit" onClick={props.handleSubmit}>Save</button>&nbsp;
                 <button className="btn btn-primary" onClick={props.handleDelete}>Delete</button>&nbsp;
                 <Link to={`/admin/holidays`} className="btn btn-dark">Cancel</Link>

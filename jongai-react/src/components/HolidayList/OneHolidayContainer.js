@@ -13,6 +13,7 @@ class OneHolidayContainer extends React.Component {
       description: '',
       type: '',
       flag: false,
+      simpleDate: '',
       addedCountries: [],
       allCountries: [],
       countriesToAdd: [],
@@ -50,6 +51,7 @@ class OneHolidayContainer extends React.Component {
         //this.setState(response.data);
         console.log("-----------------Response data id yra: " + response.data.id);
         console.log("-----------------Response data title yra: " + response.data.title);
+        console.log("-----------------Response data simpleDate yra: " + response.data.simpleDate);
         this.setState({
           code: response.data.code,
           title: response.data.title,
@@ -57,6 +59,8 @@ class OneHolidayContainer extends React.Component {
           description: response.data.description,
           type: response.data.type,
           flag: response.data.flag,
+          simpleDate: response.data.simpleDate
+
           //addedCountries: response.data.countries
         })
       })
@@ -163,6 +167,7 @@ class OneHolidayContainer extends React.Component {
             description={this.state.description}
             type={this.state.type}
             flag={this.state.flag === true ? "Yes" : "No"}
+            simpleDate={this.state.simpleDate}
             addedCountries={this.state.addedCountries}
             allCountries={this.state.allCountries}
             showAvailableCountries={this.showAvailableCountries}
@@ -175,9 +180,9 @@ class OneHolidayContainer extends React.Component {
       );
     } else {
       return (
-        <div class="text-center">
-            <div class="spinner-border text-danger" role="status">
-                <span class="sr-only">Loading data...</span>
+        <div className="text-center">
+            <div className="spinner-border text-danger" role="status">
+                <span className="sr-only">Loading data...</span>
             </div>
         </div>        
       );

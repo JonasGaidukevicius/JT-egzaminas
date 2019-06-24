@@ -4,21 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import javax.persistence.CascadeType;
->>>>>>> a23f698f20cd8278de606c97b3602ad9bad96005
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
-<<<<<<< HEAD
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-=======
->>>>>>> a23f698f20cd8278de606c97b3602ad9bad96005
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -40,8 +32,15 @@ public class Holiday {
 	private String description;
 	@Column
 	private String image;
+	
+	// Naujas type variantas su Enum
 	@Column
-	private String type;
+	private HolidayTypeName type;
+	
+	// Senas type variantas su String
+	//@Column
+	//private String type;
+	
 	@Column
 	boolean flag;
 	
@@ -85,7 +84,7 @@ public class Holiday {
 	}
 
 	//konstruktorius be id
-	public Holiday(String code, String title, String description, String image, String type, boolean flag,
+	public Holiday(String code, String title, String description, String image, HolidayTypeName type, boolean flag,
 			List<Country> countries) {
 		//this.id = id;
 		this.code = code;
@@ -98,7 +97,7 @@ public class Holiday {
 	}
 	
 	//konstruktorius be id ir su data
-		public Holiday(String code, String title, String description, String image, String type, boolean flag,
+		public Holiday(String code, String title, String description, String image, HolidayTypeName type, boolean flag,
 				List<Country> countries, LocalDate simpleDate) {
 			//this.id = id;
 			this.code = code;
@@ -161,15 +160,23 @@ public class Holiday {
 	}
 
 
-	public String getType() {
+	/*public String getType() {
+		return type;
+	}*/
+
+
+	/*public void setType(String type) {
+		this.type = type;
+	}*/
+
+	// Naujas type laukas su Enum
+	public HolidayTypeName getType() {
 		return type;
 	}
 
-
-	public void setType(String type) {
+	public void setType(HolidayTypeName type) {
 		this.type = type;
 	}
-
 
 	public boolean isFlag() {
 		return flag;
